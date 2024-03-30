@@ -21,6 +21,11 @@ const navItems = [
     icon: <IconHome className="h-4 w-4 text-neutral-500 dark:text-white" />,
   },
   {
+    name: "Feature",
+    link: "/",
+    icon: <IconUser className="h-4 w-4 text-neutral-500 dark:text-white" />,
+  },
+  {
     name: "Feedback",
     link: "/",
     icon: <IconUser className="h-4 w-4 text-neutral-500 dark:text-white" />,

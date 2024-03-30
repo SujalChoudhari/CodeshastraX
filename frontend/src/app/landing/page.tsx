@@ -1,6 +1,8 @@
 "use client"
-import React, { useEffect, useState } from 'react'
+import React from 'react'
+import TabsDemo from '@/components/component/exampletab'
 import Spline from '@splinetool/react-spline'
+import Feedbackform from '@/components/feedbackform'
 
 export default function Landing() {
   return (
@@ -21,11 +23,12 @@ export default function Landing() {
             scene="https://prod.spline.design/JmMVfZmoR9EHQCGY/scene.splinecode"
             
           />
-        </div>
 
 
-      </header>
-      <div>hi</div>
+      </div>
+    </header>
+    <TabsDemo/>
+    <Feedbackform/>
     </main>
 
 
