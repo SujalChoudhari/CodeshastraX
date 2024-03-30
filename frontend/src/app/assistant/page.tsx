@@ -15,6 +15,7 @@ import {
   Mic,
   Settings,
   Smile,
+  SquareTerminal,
   User,
   User2Icon,
   WavesIcon,
@@ -40,6 +41,14 @@ import { Separator } from '@/components/ui/separator'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import { Skeleton } from '@/components/ui/skeleton'
 import { motion } from 'framer-motion'
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion"
+import { Input } from '@/components/ui/input'
+import { Textarea } from '@/components/ui/textarea'
 
 export default function page() {
 
@@ -67,14 +76,14 @@ export default function page() {
 
       <ResizablePanelGroup
         direction="horizontal"
-        className="h-screen rounded-lg border"
+        className=" rounded-lg border"
       >
         <ResizablePanel defaultSize={60}>
-          <div className="flex h-screen flex-col">
+          <div className="flex flex-col">
 
 
 
-            <ScrollArea className="mt-16 min-h-[538px]">
+            <ScrollArea className="mt-16 min-h-[460px]">
 
               <div className="mx-auto max-w-2xl px-4">
                 <div>
@@ -130,13 +139,14 @@ export default function page() {
 
 
             </ScrollArea>
+            
 
 
 
             {/* prompt box */}
-            <div className="mx-auto w-full sm:max-w-2xl sm:px-4  mb-24">
-              <div className="bg-background  space-y-4 flex flex-row items-center gap-2  border-t px-4 py-2 shadow-lg sm:rounded-t-xl sm:border md:py-4 ">
-                <Command className="rounded-lg border shadow-md mt-4 ">
+            <div className="mx-auto w-full sm:max-w-2xl sm:px-4">
+              <div className="bg-background  space-y-4 flex flex-row items-center gap-2  border-t px-4  shadow-lg sm:rounded-xl sm:border md:py-4 ">
+                <Command className="rounded-lg border shadow-md mt-4">
 
                   <CommandList >
                     <CommandEmpty>No results found.</CommandEmpty>
@@ -160,12 +170,12 @@ export default function page() {
                 </Command>
 
 
-                <Button type="submit" size="icon" variant="outline" disabled >
+                <Button type="submit" size="icon" variant="outline" disabled  >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 256 256"
                     fill=""
-                    className='size-4 '
+                    className='size-4'
 
                   >
                     <path d="M200 32v144a8 8 0 0 1-8 8H67.31l34.35 34.34a8 8 0 0 1-11.32 11.32l-48-48a8 8 0 0 1 0-11.32l48-48a8 8 0 0 1 11.32 11.32L67.31 168H184V32a8 8 0 0 1 16 0Z" />
@@ -178,16 +188,54 @@ export default function page() {
                   <span className="sr-only">Send message</span>
                 </Button>
               </div>
+             
             </div>
+             <Accordion type="single" collapsible className="w-full border mt-4">
+      <AccordionItem value="item-1">
+        <div className="items-center flex">
+          <SquareTerminal className=''/>
+          <AccordionTrigger className='ml-2'>Terminal</AccordionTrigger>
+        </div>
+        <AccordionContent className='px-4 '>
+
+          {/* <Textarea className='h-full mt-2  '/> */}
+          <div className="flex-1 flex flex-col p-2 overflow-hidden">
+        <div className="flex-1 flex flex-col gap-2 overflow-auto text-sm">
+          <div className="text-cyan-600 select-none">$ ls -la</div>
+          <div>. .. package.json pages vercel.json</div>
+          <div className="text-cyan-600 select-none">$ npm run dev</div>
+          <div>...</div>
+        </div>
+        <div className="flex items-center gap-2">
+          <div className="text-cyan-600 select-none">{"$Sandbox/>"}</div>
+          <div className="flex-1">
+            <Input
+              className="w-full appearance-none bg-transparent border-0 box-border p-0"
+              id="terminal-input"
+              placeholder="Type a command..."
+            />
           </div>
+          <Button size="sm">Run</Button>
+        </div>
+      </div>
+        </AccordionContent>
+      </AccordionItem>
+    </Accordion>
+           
+          </div>
+          
         </ResizablePanel>
         <ResizableHandle withHandle />
         <ResizablePanel defaultSize={40}>
-          <div className="flex h-screen items-center justify-center p-24">
+          <div className="flex h-[80vh] items-center justify-center p-24">
             <span className="font-semibold">Content</span>
+
+           
           </div>
         </ResizablePanel>
       </ResizablePanelGroup>
+     
+
 
     </>
 
