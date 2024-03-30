@@ -119,12 +119,9 @@ You cannot see what is opened on screen.
 PromptLibrary.add_tool(
     "Mailto:",
     """
-    You have to open browser with the email of person given by the user. Also in response you will explain the content and the repsonse is sent but only no other thing including any symbols or email is tolerated. 
+    You have to open browser with the email of person given by the user. Also in response you will explain the content and the repsonse is sent but only no other thing including any symbols or email is tolerated. Just a confirmation message. 
     Example: 
     if the email is someone someone@example.com then mailto:someone@example.com will be executed in browser.
-   
-
-
     ```browser
     mailto:emailidofuser
     ```
