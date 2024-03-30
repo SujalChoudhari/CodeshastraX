@@ -1,6 +1,7 @@
 from fastapi import APIRouter, File, UploadFile
 from pydantic import BaseModel
 from .train import train_model
+import os
 from .predict import predict_speaker
 
 router = APIRouter()
@@ -26,11 +27,10 @@ async def predict(predict_request: PredictRequest):
         temp_file.write(await predict_request.unknown_file.read())
 
     # Perform prediction
-    predicted_speaker = predict_speaker(
+    predicted_speaker, _, acuraccy = predict_speaker(
         "./sample/speaker_recognition_model.pkl", "temp_unknown.wav"
     )
-
     # Remove the temporary file
     os.remove("temp_unknown.wav")
 
-    return {"predicted_speaker": predicted_speaker}
+    return {"predicted_speaker": predicted_speaker, "accuracy": acuraccy}
