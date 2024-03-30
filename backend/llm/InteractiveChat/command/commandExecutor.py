@@ -12,7 +12,8 @@ class CommandExecutor:
         )
         if cmd_command != None and cmd_command != "":
             out = CommandExecutor.execute(cmd_command)
-            return self.chat_instance.send_message(message=out)
+            print("running command: ",out)
+            return out
         else:
             return response
 

@@ -6,7 +6,7 @@ class TerminalExecutor:
         pass
 
     def get_cwd(self):
-        dir_conents = os.listdir("./sandbox")
+        dir_conents = os.listdir("../sandbox")
         print(dir_conents)
         return
 

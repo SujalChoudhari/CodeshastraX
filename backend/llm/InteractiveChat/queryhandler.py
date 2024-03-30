@@ -12,7 +12,10 @@ def query_handler(query: str) -> str:
         with open("../sandbox/user.txt", "r") as f:
             data = f.read()
 
-    query += "This is SaveFile: \n" + data
+    query += (
+        "This is SaveFile permanantly stored in Database, CHeck if anything is releent: \n"
+        + data
+    )
 
     files = executor.get_file_contents(query)
 

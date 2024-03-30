@@ -32,12 +32,12 @@ def response_handler(chat_instance, res: str) -> object:
     pythonExecutor = PythonExecutor(chat_instance=chat_instance)
     commandExecutor = CommandExecutor(chat_instance=chat_instance)
     webscrapperExecutor = WebScrapperExecutor(chat_instance=chat_instance)
-    final_res = ResourceWarning
+    final_res = res
 
     browser_url = get_current_browser_ui(res)
 
     final_res = commandExecutor.run_from_prompt(res)
-    final_res = pythonExecutor.run_from_prompt(res)
+    final_res = pythonExecutor.run_from_prompt(final_res)
     final_res = webscrapperExecutor.run_from_prompt(final_res)
 
     response = {
