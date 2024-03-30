@@ -8,8 +8,16 @@ export default function TabsDemo() {
       title: "Speech recognition",
       value: "Speech recognition",
       content: (
-        <div className="w-full overflow-hidden relative h-full rounded-2xl p-10 text-xl md:text-4xl font-bold text-purple-600 bg-gradient-to-br from-slate-50 to-slate-50 border-purple-600 border-solid border-2">
-          <p>Highly accurate speech recognition</p>
+        <div className="w-full overflow-hidden relative h-full rounded-2xl p-10 text-xl md:text-4xl font-bold text-green-700 bg-gradient-to-br from-slate-50 to-slate-50 border-green-700 border-solid border-2">
+          <div className='w-full h-2/4 md:h-full md:w-2/5 flex flex-col justify-center items-center md:items-start gap-8'>
+        <div className='flex flex-col gap-2'>
+         
+          <h1 className='text-md md:text-xl'>Speech Recognition and Personalization</h1>
+        </div>
+        <p className='max-w-md text-base md:text-base text-green-400'>Highly accurate speech recognition</p>
+        <p className='max-w-md text-base md:text-base text-green-400'>Voice profile recognition system that can identify individual users based on their unique voice.</p>
+        <p className='max-w-md text-base md:text-base text-green-400'>Integrated terminal to accept terminal-style commands in natural language.</p>
+      </div>
           <DummyContent imageSrc="/landing/images/1.png" />
         </div>
       ),
@@ -18,8 +26,16 @@ export default function TabsDemo() {
       title: "Information Retrieval and Task Execution",
       value: "Information Retrieval and Task Execution",
       content: (
-        <div className="w-full overflow-hidden relative h-full rounded-2xl p-10 text-xl md:text-4xl font-bold text-pink-600 bg-gradient-to-br from-slate-50 to-slate-50 border-pink-600 border-solid border-2">
-          <p>A user-friendly intuitive interface</p>
+        <div className="w-full overflow-hidden relative h-full rounded-2xl p-10 text-xl md:text-4xl font-bold text-pink-700 bg-gradient-to-br from-slate-50 to-slate-50 border-pink-700 border-solid border-2">
+          <div className='w-full h-2/4 md:h-full md:w-2/5 flex flex-col justify-center items-center md:items-start gap-8'>
+        <div className='flex flex-col gap-2'>
+         
+          <h1 className='text-md md:text-xl'>Information Retrieval and Task Execution:</h1>
+        </div>
+        <p className='max-w-md text-base md:text-base text-pink-400'>Conducts customized searches on the internet to be displayed within its own browser window.</p>
+        <p className='max-w-md text-base md:text-base text-pink-400'>Ability to execute a variety of predefined tasks based on voice input.</p>
+        <p className='max-w-md text-base md:text-base text-pink-400'>Intelligent task matching.</p>
+      </div>
           <DummyContent imageSrc="/landing/images/2.png" />
         </div>
       ),
@@ -28,8 +44,17 @@ export default function TabsDemo() {
         title: "Structured flow",
         value: "Structured flow",
         content: (
-          <div className="w-full overflow-hidden relative h-full rounded-2xl p-10 text-xl md:text-4xl font-bold text-purple-600 bg-gradient-to-br from-slate-50 to-slate-50 border-purple-300 border-solid border-2">
-            <p>Seamless data flow, clear input, perfect output</p>
+          <div className="w-full overflow-hidden relative h-full rounded-2xl p-10 text-xl md:text-4xl font-bold text-purple-600 bg-gradient-to-br from-slate-50 to-slate-50 border-purple-600 border-solid border-2">
+             <div className='w-full h-2/4 md:h-full md:w-2/5 flex flex-col justify-center items-center md:items-start gap-8'>
+        <div className='flex flex-col gap-2'>
+         
+          <h1 className='text-md md:text-xl'>User Interface and Performance:</h1>
+        </div>
+        <p className='max-w-md text-base md:text-base text-purple-400'>A user-friendly intuitive interface.</p>
+        <p className='max-w-md text-base md:text-base text-purple-400'>Quick response time and high performance to ensure a smooth user experience.
+</p>
+        <p className='max-w-md text-base md:text-base text-purple-400'>Query time graphs</p>
+      </div>
             <DummyContent imageSrc="/landing/images/2.png" />
           </div>
         ),
@@ -38,19 +63,41 @@ export default function TabsDemo() {
         title: "Realistic voice",
         value: "Realistic voice",
         content: (
-          <div className="w-full overflow-hidden relative h-full rounded-2xl p-10 text-xl md:text-4xl font-bold text-yellow-300 bg-gradient-to-br from-slate-50 to-slate-50 border-yellow-300 border-solid border-2">
-            <p>Realistic pleasant voice to enhance user engagement</p>
-            <DummyContent imageSrc="/landing/images/4.png" />
+          <div className="w-full overflow-hidden relative h-full rounded-2xl p-10 text-xl md:text-4xl font-bold text-yellow-500 bg-gradient-to-br from-slate-50 to-slate-50 border-yellow-500 border-solid border-2 flex flex-col md:flex-row items-center">
+   <div className='w-full h-2/4 md:h-full md:w-2/5 flex flex-col justify-center items-center md:items-start gap-8'>
+
+        <div className='flex flex-col gap-2'>
+         
+          <h1 className='text-md md:text-2xl'>Advanced Features and Adaptability</h1>
+        </div>
+        <p className='max-w-md text-lg md:text-base text-yellow-300'>Realistic pleasant voice to enhance user engagement.</p>
+        <p className='max-w-md text-lg md:text-base text-yellow-300'>Ability to maintain context across conversations to provide personalized responses.</p>
+        <p className='max-w-md text-lg md:text-base text-yellow-300'>Learn and improve performance over time based on user feedback and usage patterns.</p>
+      </div>
+            <DummyContent imageSrc="/landing/images/3.png" />
           </div>
         ),
       },
       {
-        title: "Version control",
+        title: "Security",
         value: "chat",
         content: (
-            <div className="w-full overflow-hidden relative h-full rounded-2xl p-10 text-xl md:text-4xl font-bold text-yellow-300 bg-gradient-to-br from-slate-50 to-slate-50 border-yellow-300 border-solid border-2">
-            <p>Realistic pleasant voice to enhance user engagement</p>
-            <DummyContent imageSrc="/landing/images/4.png" />
+        <div className='w-full h-2/4 md:h-full md:w-2/5 flex flex-col justify-center items-center md:items-start gap-8'>
+          <div className="w-full overflow-hidden relative h-full rounded-2xl p-10 text-xl md:text-4xl font-bold text-blue-700 bg-gradient-to-br from-slate-50 to-slate-50 border-blue-700 border-solid border-2">
+            <div className='w-full h-2/4 md:h-full md:w-2/5 flex flex-col justify-center items-center md:items-start gap-8'>
+        <div className='flex flex-col gap-2'>
+         
+          <h1 className='text-md mt-12 text-3xl'>Security and Integration</h1>
+        </div>
+        <p className='max-w-md text-base md:text-base text-blue-500'>Managing context while respecting user privacy and security</p>
+        <p className='max-w-md text-base md:text-base text-blue-500'>Autocomplete feature for search text inputs.</p>
+        <p className='max-w-md text-base md:text-base text-blue-500'>Validation mechanisms to protect user data, authenticate user accounts securely</p>
+      </div>
+
+      <div className='w-full h-2/4 md:h-full md:w-3/5 flex items-center justify-center relative -z-10 ml-30'>
+      <DummyContent imageSrc="/landing/images/3.png" />
+      </div>
+          </div>
           </div>
         ),
       },

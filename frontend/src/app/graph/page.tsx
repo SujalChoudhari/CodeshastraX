@@ -40,17 +40,6 @@ function LineChart(props) {
               { x: "Jun", y: 154 },
             ],
           },
-          {
-            id: "Mobile",
-            data: [
-              { x: "Jan", y: 60 },
-              { x: "Feb", y: 48 },
-              { x: "Mar", y: 177 },
-              { x: "Apr", y: 78 },
-              { x: "May", y: 96 },
-              { x: "Jun", y: 204 },
-            ],
-          },
         ]}
         margin={{ top: 100, right: 101, bottom: 100, left: 101}}
         xScale={{

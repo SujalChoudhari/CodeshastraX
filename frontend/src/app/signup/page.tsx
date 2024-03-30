@@ -87,19 +87,13 @@ export default function Patientloginin() {
                             />
                         </div>
                     </div>
-                    <div className="flex items-center justify-between">
-                        <div className="flex items-center">
-                            <Link className="ml-auto inline-block text-sm underline" href="">
-                                Forgot your password?
-                            </Link>
-                        </div>
-                    </div>
+                    
                     <div>
                         <Button
-                            className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
+                            className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-purple-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
                             type="submit" 
                         >
-                            Login
+                            Sign Up
                         </Button>
                     </div>
                 </form>
