@@ -1,6 +1,4 @@
 import google.generativeai as genai
-
-
 class GenerativeAIChat:
     def __init__(
         self,
@@ -56,3 +54,4 @@ class GenerativeAIChat:
             )
         self.convo.send_message(message)
         return self.convo.last.text
+

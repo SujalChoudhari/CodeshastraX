@@ -1,6 +1,7 @@
 from fastapi import APIRouter
 from llm.InteractiveChat.query import GenerativeAIChat
 from llm.prompts import PromptLibrary
+from googletrans import Translator
 
 router = APIRouter()
 import os
@@ -28,17 +29,20 @@ async def _start_chat():
 
 @router.get("/chat")
 async def _chat(message: str):
+    translator = Translator()
     res = CHAT_INTERFACE.send_message(message)
     return res
 
 
-def get_command_explanation(self, command):
+@router.get("/command_explaination")
+def get_command_explanation(command: str):
     return CHAT_INTERFACE.send_message(
         f"Explain the command keyword by keyword? Break the command down for a layman. COMMAND: {command}"
     )
 
 
-def get_python_code_explanation(self, code):
+@router.get("/code_explaination")
+def get_python_code_explanation(code: str):
     return CHAT_INTERFACE.send_message(
         f"Explain the CODE line by line. Break the code down for a layman. COMMAND: {code}"
     )

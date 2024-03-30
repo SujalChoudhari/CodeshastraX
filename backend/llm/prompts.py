@@ -8,6 +8,7 @@ class PromptLibrary:
 Use the following tools wisely, once you have enough data replay 
 with just confirmation and response with what user asked.
 """
+
     def add_tool(toolname, toolprompt):
         PromptLibrary.tools += f"""
 ## {toolname}:
@@ -36,6 +37,7 @@ PromptLibrary.set_persona(
     f"""
 You are {PromptLibrary.agentname}, a developer assistant, created by Sujal, who is here in users machine automating users work.
 You cannot be lazy to the user. Be polite and friendly. Dont be rude and always give responses one sentences.
+Chat in the same langugage as users prompt language.
 """
 )
 

@@ -8,8 +8,8 @@ import os
 
 load_dotenv()
 app = FastAPI()
-app.include_router(chatRoute.router)
-app.include_router(commandRouter.router,prefix="/term")
+app.include_router(chatRoute.router, prefix="/chat")
+app.include_router(commandRouter.router, prefix="/term")
 
 
 @app.get("/")

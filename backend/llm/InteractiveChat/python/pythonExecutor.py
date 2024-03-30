@@ -1,5 +1,4 @@
 import subprocess
-from singletons import CHAT_INTERFACE
 
 
 class PythonExecutor:
