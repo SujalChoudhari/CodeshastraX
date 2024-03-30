@@ -48,18 +48,9 @@ export default function TabsDemo() {
         title: "Version control",
         value: "chat",
         content: (
-          <div className="w-full overflow-hidden relative h-full rounded-2xl p-10 text-xl md:text-4xl font-bold text-blue-700 bg-gradient-to-br from-slate-50 to-slate-50 border-blue-700 border-solid border-2">
-            <div className='w-full h-2/4 md:h-full md:w-2/5 flex flex-col justify-center items-center md:items-start gap-8'>
-        <div className='flex flex-col gap-2'>
-          <h2 className='text-4xl font-black md:text-2xl'>ByteWave</h2>
-          <h2 className='text-md md:text-2xl'>Your Intelligent Voice Companion, Tailored to Perfection</h2>
-        </div>
-        <p className='max-w-md text-sm md:text-base text-zinc-500'>Insightful is an AI-powered sales optimization tool that provides data-driven insights to boost sales performance.</p>
-      </div>
-
-      <div className='w-full h-2/4 md:h-full md:w-3/5 flex items-center justify-center relative -z-10 ml-30'>
-      <DummyContent imageSrc="/landing/images/3.png" />
-      </div>
+            <div className="w-full overflow-hidden relative h-full rounded-2xl p-10 text-xl md:text-4xl font-bold text-yellow-300 bg-gradient-to-br from-slate-50 to-slate-50 border-yellow-300 border-solid border-2">
+            <p>Realistic pleasant voice to enhance user engagement</p>
+            <DummyContent imageSrc="/landing/images/4.png" />
           </div>
         ),
       },

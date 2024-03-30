@@ -17,17 +17,17 @@ export const metadata: Metadata = {
 const navItems = [
   {
     name: "Home",
-    link: "/",
+    link: "/landing",
     icon: <IconHome className="h-4 w-4 text-neutral-500 dark:text-white" />,
   },
   {
-    name: "Feature",
-    link: "/",
+    name: "Assistant",
+    link: "/assistant",
     icon: <IconUser className="h-4 w-4 text-neutral-500 dark:text-white" />,
   },
   {
-    name: "Feedback",
-    link: "/",
+    name: "Graphs",
+    link: "/graph",
     icon: <IconUser className="h-4 w-4 text-neutral-500 dark:text-white" />,
   },
   {
