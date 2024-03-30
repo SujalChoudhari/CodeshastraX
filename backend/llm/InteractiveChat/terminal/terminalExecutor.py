@@ -11,7 +11,7 @@ class TerminalExecutor:
         print(dir_conents)
         return
 
-    def get_file_conetents(self, prompt) -> list[str]:
+    def get_file_contents(self, prompt) -> list[str]:
         file_conents = []
         try:
             for name in os.listdir():

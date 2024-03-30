@@ -1,7 +1,7 @@
 from fastapi import APIRouter
+from llm.InteractiveChat.reshandler import response_handler
 from llm.InteractiveChat.query import GenerativeAIChat
 from llm.prompts import PromptLibrary
-from googletrans import Translator
 
 router = APIRouter()
 import os
@@ -20,7 +20,7 @@ async def _start_chat():
             {
                 "role": "model",
                 "parts": [
-                    "Understood, I will not violate any Policy and Obey it thorughtly"
+                    "Understood, I will not violate any of the Policy and obey it throughly"
                 ],
             },
         ]
@@ -29,9 +29,9 @@ async def _start_chat():
 
 @router.get("/chat")
 async def _chat(message: str):
-    translator = Translator()
     res = CHAT_INTERFACE.send_message(message)
-    return res
+    modi_res = response_handler(CHAT_INTERFACE, res)
+    return modi_res
 
 
 @router.get("/command_explaination")

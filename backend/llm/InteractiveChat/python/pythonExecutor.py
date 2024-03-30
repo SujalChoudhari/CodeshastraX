@@ -7,13 +7,15 @@ class PythonExecutor:
     def __init__(self, chat_instance):
         self.chat_instance = chat_instance
 
-    def run(self, response):
-        python_code = (
+    def run_from_prompt(self, response):
+        python_code: str = (
             response.split(f"```{PythonExecutor.token}")[1].split("```")[0].strip()
         )
-        out = self.execute_code(python_code)
-        self.chat_instance.chat_with_ai(user_input=out)
-        return
+        if python_code != None and python_code != "":
+            out = self.execute_code(python_code)
+            return self.chat_instance.send_message(message=out)
+        else:
+            return response
 
     def execute_code(self, python_code):
         with open("temp.py", "w") as f:
