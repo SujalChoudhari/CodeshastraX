@@ -114,7 +114,7 @@ function PromptBox({ onSubmitPressed, animatePrompt, setAnimatePrompt }: { onSub
                     {/* ALL THE BUTTONS */}
 
 
-                    <div className=''>
+                    <div className=' space-y-4 items-center justify-center flex flex-col'>
                         <AlertDialog >
                             <AlertDialogTrigger asChild>
                                 <button className="group block h-12 select-none rounded-lg bg-white px-3 text-sm  text-zinc-950 shadow-[0_-1px_0_0px_#d4d4d8_inset,0_0_0_1px_#f4f4f5_inset,0_0.5px_0_1.5px_#fff_inset] hover:bg-zinc-50 hover:via-zinc-900 hover:to-zinc-800 active:shadow-[-1px_0px_1px_0px_#e4e4e7_inset,1px_0px_1px_0px_#e4e4e7_inset,0px_0.125rem_1px_0px_#d4d4d8_inset]"><span className="block group-active:[transform:translate3d(0,1px,0)]"><User2Icon /></span></button>
@@ -148,23 +148,8 @@ function PromptBox({ onSubmitPressed, animatePrompt, setAnimatePrompt }: { onSub
                                 </span>
                             </button>
                         </div>
-                        <AlertDialog >
-                            <AlertDialogTrigger asChild>
-                                <button className="group block h-12 select-none rounded-lg bg-white px-3 text-sm  text-zinc-950 shadow-[0_-1px_0_0px_#d4d4d8_inset,0_0_0_1px_#f4f4f5_inset,0_0.5px_0_1.5px_#fff_inset] hover:bg-zinc-50 hover:via-zinc-900 hover:to-zinc-800 active:shadow-[-1px_0px_1px_0px_#e4e4e7_inset,1px_0px_1px_0px_#e4e4e7_inset,0px_0.125rem_1px_0px_#d4d4d8_inset]"><span className="block group-active:[transform:translate3d(0,1px,0)]"><Timer /></span></button>
-                            </AlertDialogTrigger>
-                            <AlertDialogContent>
-                                <AlertDialogHeader>
-                                    <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
-                                    <AlertDialogDescription>
-                                        Anin
-                                    </AlertDialogDescription>
-                                </AlertDialogHeader>
-                                <AlertDialogFooter>
-                                    <AlertDialogCancel>Cancel</AlertDialogCancel>
-                                    <AlertDialogAction>Continue</AlertDialogAction>
-                                </AlertDialogFooter>
-                            </AlertDialogContent>
-                        </AlertDialog>
+                       
+                                <button className="group block h-12 select-none rounded-lg bg-white px-3 text-sm  text-zinc-950 shadow-[0_-1px_0_0px_#d4d4d8_inset,0_0_0_1px_#f4f4f5_inset,0_0.5px_0_1.5px_#fff_inset] hover:bg-zinc-50 hover:via-zinc-900 hover:to-zinc-800 active:shadow-[-1px_0px_1px_0px_#e4e4e7_inset,1px_0px_1px_0px_#e4e4e7_inset,0px_0.125rem_1px_0px_#d4d4d8_inset]"><span className="group-active:[transform:translate3d(0,1px,0)] text-sm flex flex-row items-center"><Timer />Response Time: 3s</span></button>
                     </div>
 
 
