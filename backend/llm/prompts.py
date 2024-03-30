@@ -119,12 +119,16 @@ You cannot see what is opened on screen.
 PromptLibrary.add_tool(
     "Mailto:",
     """
-You are allowed to scrape SFW sites, to scrape any website you can write the following syntax.
-```browser
-mailto:
-This will provide you all the NON-HTML content(text) on the website.
-For static content, use scraping.
-""",
+    You have to open browser with the email of person given by the user. Also in response you will explain the content and the repsonse is sent but only no other thing including any symbols or email is tolerated. 
+    Example: 
+    if the email is someone someone@example.com then mailto:someone@example.com will be executed in browser.
+   
+
+
+    ```browser
+    mailto:emailidofuser
+    ```
+    """,
 )
 
 
