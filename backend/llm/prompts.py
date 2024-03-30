@@ -100,13 +100,13 @@ You cannot see what is opened on screen.
 )
 
 
-# PromptLibrary.add_tool(
-#     "Web Scrapping:",
-#     """
-# You are allowed to scrape SFW sites, to scrape any website you can write the following syntax.
-# ```scrape
-# https://url.which/you/want?to=scrape_for
-# This will provide you all the NON-HTML content(text) on the website.
-# For static content, use scraping.
-# """,
-# )
+PromptLibrary.add_tool(
+    "Web Scrapping:",
+    """
+You are allowed to scrape SFW sites, to scrape any website you can write the following syntax.
+```scrape
+https://url.which/you/want?to=scrape_for
+This will provide you all the NON-HTML content(text) on the website.
+For static content, use scraping.
+""",
+)

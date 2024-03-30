@@ -5,7 +5,7 @@ import librosa
 import joblib
 from sklearn.metrics import accuracy_score
 import shutil
-from .train import train_model
+from train import train_model
 
 
 # Function to extract features from audio file
@@ -34,8 +34,7 @@ def predict_speaker(model_load_path, sample_dir, unknown_file_path):
     ]
 
     data_amount = len(os.listdir(f"./sample/{predicted_label[0]}"))
-    min_accuracy = -0.07 + 1 / (0.7 + math.exp(-0.3 * data_amount + 1.1))
-    min_accuracy += 0.3 if predicted_label[0].startswith("F") else 0  # female
+    min_accuracy = -0.5 + 1 / (0.04 + math.exp(-0.3 * data_amount + 1.1))
     print(min_accuracy, predicted_label[0])
     # Calculate accuracy using the predicted probabilities
     accuracy = max_proba
@@ -49,7 +48,6 @@ def predict_speaker(model_load_path, sample_dir, unknown_file_path):
                 label_folder = os.path.join(sample_dir, label)
                 data_amount = len(os.listdir(label_folder))
                 min_accuracy = -0.5 + 1 / (0.04 + math.exp(-0.3 * data_amount + 1.1))
-
                 if min_accuracy > next_best_accuracy:
                     next_best_accuracy = min_accuracy
                     next_best_label = label
@@ -112,7 +110,7 @@ def predict_speaker(model_load_path, sample_dir, unknown_file_path):
 if __name__ == "__main__":
     model_load_path = "./sample/speaker_recognition_model.pkl"
     sample_dir = "./sample"
-    unknown_file_path = "./sample/unknown3.wav"
+    unknown_file_path = "./sample/unknown2.wav"
     predicted_speaker, sample_serial, accuracy = predict_speaker(
         model_load_path, sample_dir, unknown_file_path
     )

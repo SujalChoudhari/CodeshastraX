@@ -8,6 +8,8 @@ class PythonExecutor:
         self.chat_instance = chat_instance
 
     def run_from_prompt(self, response):
+        if f"```{PythonExecutor.token}" not in response:
+            return response
         python_code: str = (
             response.split(f"```{PythonExecutor.token}")[1].split("```")[0].strip()
         )
