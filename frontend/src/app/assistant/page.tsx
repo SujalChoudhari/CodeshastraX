@@ -51,6 +51,7 @@ import {
 } from "@/components/ui/accordion"
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 
 export default function page() {
 
@@ -60,6 +61,7 @@ export default function page() {
 
   const [chatbotResponse, setChatbotResponse] = useState<string | null>(null);
   const [animatePrompt, setAnimatePrompt] = useState(false); // State to control animation
+  const [fileNames, setFileNames] = useState<string[]>([]);
   
   const handleTriggerClick = () => {
     setAnimatePrompt(true); // Toggle animation state
@@ -182,11 +184,34 @@ export default function page() {
                           <Calculator className="mr-2 h-4 w-4" />
                           <span>What is 15% of 280?</span>
                         </CommandItem>
+                        <Dialog >
+                      <DialogTrigger className="underline flex justify-end">
+                        <span className="text-sm my-2 text-gray-500 ml-80 ">{`+ 10 more suggestions`}</span>
+                      </DialogTrigger>
+
+                      <DialogContent>
+                        <DialogHeader>
+                          <DialogTitle>All Predefined tasks</DialogTitle>
+                        </DialogHeader>
+                        <Separator />
+                        <ScrollArea className="max-h-[500px] px-5 flex flex-row">
+                          <div className='flex flex-row items-center'>
+                            <Calculator className="mr-2 h-4 w-4 text-gray-500 " />
+                            <span className="  text-gray-500 " >What is 15% of 280?</span>
+                            {/* ADD MORE PREDEFINED TASKSs*/}
+                          </div>
+                        
+                        
+                        </ScrollArea>
+                      </DialogContent>
+                    </Dialog>
                       </CommandGroup>
                       <CommandSeparator />
                     </CommandList>
                     <CommandInput placeholder="Input Prompt." />
                   </Command>
+                  
+
 
                   <button className="group h-8 select-none rounded-lg bg-gradient-to-b from-zinc-800 via-zinc-700 to-zinc-600 px-3 text-sm leading-8 text-zinc-50 shadow-[0_-1px_0_1px_rgba(0,0,0,0.8)_inset,0_0_0_1px_rgb(9_9_11)_inset,0_0.5px_0_1.5px_#71717a_inset] hover:bg-gradient-to-b hover:from-zinc-900 hover:via-zinc-900 hover:to-zinc-700 active:shadow-[0_3px_0_0_rgba(0,0,0)_inset]"><span className="block group-active:[transform:translate3d(0,1px,0)]">
                   <svg
