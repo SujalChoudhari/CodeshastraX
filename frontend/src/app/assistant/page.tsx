@@ -17,6 +17,7 @@ import {
   Settings,
   Smile,
   SquareTerminal,
+  Target,
   User,
   User2Icon,
   WavesIcon,
@@ -169,15 +170,15 @@ export default function page() {
                       <CommandGroup heading="Suggestions">
                         <CommandItem>
                           <Calendar className="mr-2 h-4 w-4" />
-                          <span>Calendar</span>
+                          <span>"Remind me to submit the project at 5 PM tomorrow.</span>
                         </CommandItem>
                         <CommandItem>
-                          <Smile className="mr-2 h-4 w-4" />
-                          <span>Search Emoji</span>
+                          <Target className="mr-2 h-4 w-4" />
+                          <span>"Remind me to submit the project at 5 PM tomorrow.</span>
                         </CommandItem>
                         <CommandItem>
                           <Calculator className="mr-2 h-4 w-4" />
-                          <span>Calculator</span>
+                          <span>What is 15% of 280?</span>
                         </CommandItem>
                       </CommandGroup>
                       <CommandSeparator />

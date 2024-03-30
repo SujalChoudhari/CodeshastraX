@@ -19,7 +19,7 @@ export default function Landing() {
         <div className='w-full h-2/4 md:h-full md:w-3/5 flex items-center justify-center relative -z-10 ml-30'>
           <Spline
             scene="https://prod.spline.design/JmMVfZmoR9EHQCGY/scene.splinecode"
-            scale={2} // Increase the size by setting the scale to 2
+            
           />
         </div>
 
