@@ -2,10 +2,6 @@ import google.generativeai as genai
 
 
 class GenerativeAIChat:
-    """
-    A class for interacting with a Generative AI chat system.
-    """
-
     def __init__(
         self,
         api_key,
@@ -53,7 +49,7 @@ class GenerativeAIChat:
     def start_chat(self, history=[]):
         self.convo = self.model.start_chat(history=history)
 
-    def send_message(self, message):
+    def send_message(self, message) -> str:
         if self.convo is None:
             raise ValueError(
                 "No conversation has been started. Call start_chat method first."

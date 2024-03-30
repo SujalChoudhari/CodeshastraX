@@ -1,9 +1,10 @@
 import os
 
-
 class TerminalExecutor:
     def __init__(self) -> None:
         pass
+
+    
 
     def get_cwd(self):
         dir_conents = os.listdir("./sandbox")
@@ -22,5 +23,3 @@ class TerminalExecutor:
 
         return file_conents
 
-
-TerminalExecutor().get_cwd()

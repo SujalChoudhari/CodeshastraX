@@ -1,0 +1,5 @@
+output_format:
+  blocks: [str | code]
+  browser: ""
+  terminal: ""
+  isfinal: [false | true]

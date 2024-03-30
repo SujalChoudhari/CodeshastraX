@@ -4,16 +4,16 @@ class CommandExecutor:
     def __init__(self, chat_instance):
         self.chat_instance = chat_instance
 
-    def run(self, response):
+    def execute_from_prompt(self, response):
         cmd_command = (
             response.split(f"```{CommandExecutor.token}")[1].split("```")[0].strip()
         )
-        out = self.execute_command(cmd_command)
+        out = CommandExecutor.execute(cmd_command)
 
         self.chat_instance.chat_with_ai(out)
         return
 
-    def execute_command(self, command):
+    def execute(command):
         """
         Execute the provided command using subprocess.
         """
@@ -21,7 +21,12 @@ class CommandExecutor:
 
         try:
             result = subprocess.run(
-                command, shell=True, capture_output=True, text=True, check=True
+                command,
+                shell=True,
+                capture_output=True,
+                text=True,
+                check=True,
+                cwd="../sandbox",
             )
             if result.stdout != "":
                 return result.stdout
@@ -32,8 +37,3 @@ class CommandExecutor:
                     return "Code return code: " + str(result.returncode)
         except subprocess.CalledProcessError as e:
             return f"Error: {e}"
-        
-    def get_command_explanation(self, command):
-        return self.chat.send_message(
-            f"Explain the command keyword by keyword? Break the command down for a layman. COMMAND: {command}"
-        )

@@ -1,4 +1,5 @@
 import subprocess
+from singletons import CHAT_INTERFACE
 
 
 class PythonExecutor:
@@ -32,8 +33,3 @@ class PythonExecutor:
 
         except subprocess.CalledProcessError as e:
             return f"Error: {e}"
-
-    def get_python_code_explanation(self, code):
-        return self.chat.send_message(
-            f"Explain the CODE line by line. Break the code down for a layman. COMMAND: {code}"
-        )
