@@ -63,7 +63,7 @@ export default function Landing() {
             <div className='flex flex-col gap-2'>
               
 
-              <h1 className='text-4xl font-black md:text-8xl'>ByteWave</h1>
+              <h1 className='text-4xl font-black md:text-8xl'>WaveByte</h1>
               <TypewriterEffectSmooth words={words} />
 
             </div>
