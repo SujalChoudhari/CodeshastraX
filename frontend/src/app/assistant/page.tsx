@@ -5,328 +5,29 @@ import {
   ResizablePanel,
   ResizablePanelGroup,
 } from "@/components/ui/resizable"
-import styles from './window.module.css';
-
-import {
-  Calculator,
-  Calendar,
-  CreditCard,
-  GitGraph,
-  LoaderIcon,
-  Mic,
-  Settings,
-  Smile,
-  SquareTerminal,
-  Target,
-  User,
-  User2Icon,
-  WavesIcon,
-} from "lucide-react"
-
-import {
-  Command,
-  CommandEmpty,
-  CommandGroup,
-  CommandInput,
-  CommandItem,
-  CommandList,
-  CommandSeparator,
-  CommandShortcut,
-} from "@/components/ui/command"
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger
-} from '@/components/ui/tooltip'
-import { Button } from '@/components/ui/button'
-import { Separator } from '@/components/ui/separator'
-import { ScrollArea } from '@/components/ui/scroll-area'
-import { Skeleton } from '@/components/ui/skeleton'
-import { motion } from 'framer-motion'
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion"
-import { Input } from '@/components/ui/input'
-import { Textarea } from '@/components/ui/textarea'
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
-import axios from 'axios';
+import Chat from '@/components/chat';
+import PromptBox from '@/components/PromptBox';
+import Terminal from '@/components/Terminal';
+import WebPage from '@/components/WebPage'
 
 export default function page() {
-
-  const [htmlContent, setHTMLContent] = useState("")
-  const [browserAddress, setBrowserAddress] = useState("")
-
-  function replaceRelativeLinks(html: string) {
-    // Create a DOM element to parse the HTML
-    const tempElement = document.createElement('div');
-    tempElement.innerHTML = html;
-
-    // Find all <a> elements with href attribute
-    const anchorElements = tempElement.querySelectorAll('a[href]');
-
-    // Replace relative links with absolute links
-    anchorElements.forEach(anchor => {
-      const href = anchor.getAttribute('href');
-      if (href && !href.startsWith('http')) { // Check if href is relative
-        // Replace relative link with browserAddress + relative link
-        anchor.setAttribute('href', browserAddress + href);
-      }
-    });
-
-    // Return the modified HTML
-    return tempElement.innerHTML;
-  }
-
-
-  async function fetchData() {
-    try {
-      if (browserAddress == "") {
-        setHTMLContent("Web Pages will be shown Here")
-        return
-      }
-      const response = await axios.get(`https://cors-anywhere.herokuapp.com/${browserAddress}`, {
-        // Add any necessary options for the request
-      });
-      const modifiedHTML: string = replaceRelativeLinks(response.data);
-      setHTMLContent(modifiedHTML);
-    } catch (error) {
-      console.error('Error fetching data:', error);
-
-      // Open a popup window with the browser address on error
-      const popupWindow = window.open(
-        browserAddress,
-        '_blank',
-        `width=${660},height=${screen.height},left=${screen.width / 2 - 660 / 2},toolbar=no,scrollbars=yes,status=no,resizable=yes`
-      );
-
-      setHTMLContent("<div className='flex items-center justify-center'> We opened the Webpage in Popup for better Experience.</div>")
-    }
-  }
 
   const tags = Array.from({ length: 50 }).map(
     (_, i, a) => `v1.2.0-beta.${a.length - i}`
   )
-
-  const [chatbotResponse, setChatbotResponse] = useState<string | null>(null);
   const [animatePrompt, setAnimatePrompt] = useState(false); // State to control animation
-  const [fileNames, setFileNames] = useState<string[]>([]);
-  
-  const handleTriggerClick = () => {
-    setAnimatePrompt(true); // Toggle animation state
-    setTimeout(() => setAnimatePrompt(false), 500); // Reset animation state after 500ms
-  };
-
-
-  useEffect(() => {
-    // Simulate fetching the chatbot response from the backend
-    const fetchResponse = () => {
-      setTimeout(() => {
-        setChatbotResponse('Concert Tickets: This might seem obvious, but its a surefire way to make your friends birthday unforgettable. Check out their favorite artists tour schedule and snag some tickets (bonus points for VIP experience if it fits your budget');
-      }, 200); // Simulate a 2-second delay
-    };
-
-    fetchResponse();
-
-  }, []); // Empty dependency array means this effect runs once on component mount
-
-  useEffect(() => {
-    const timeoutId = setTimeout(() => {
-      fetchData();
-    }, 1000); // Adjust the delay time as needed
-
-    return () => {
-      clearTimeout(timeoutId);
-    };
-  }, [browserAddress]);
-
-
   return (
-
-
     <>
-
-
       <ResizablePanelGroup
         direction="horizontal"
         className=" rounded-lg border"
       >
         <ResizablePanel defaultSize={55}>
           <div className="h-screen flex flex-col">
-
-
-
-            <ScrollArea className="mt-16 min-h-max h-[460px]">
-
-              <div className="mx-auto max-w-2xl px-4">
-                <div>
-                  <div className="group relative flex items-start md:-ml-12">
-                    <div className="bg-background flex size-[25px] shrink-0 select-none items-center justify-center rounded-md border shadow-sm"> {/* Seperator */}
-                      <User2Icon size={18} />
-                    </div>
-                    <div className="ml-4 flex-1 space-y-2 overflow-hidden pl-2">
-                      What can you do?
-                    </div>
-                  </div>
-                  <div data-orientation="horizontal" role="none" className="shrink-0 bg-border h-[1px] w-full my-4">
-                  </div>
-                </div>
-
-
-
-
-                <div>
-                  <div className="group relative flex items-start md:-ml-12">
-                    <div className="bg-background flex size-[25px] shrink-0 select-none items-center justify-center rounded-md border shadow-sm"> {/* Seperator */}
-                      <GitGraph size={18} />
-                    </div>
-
-                    <div className="ml-4 flex-1 space-y-2 overflow-hidden pl-2">
-
-                      {chatbotResponse ? (
-                        <div>
-                          {chatbotResponse.split('').map((char, index) => (
-                            <motion.span
-                              key={index}
-                              initial={{ opacity: 0 }}
-                              animate={{ opacity: 1 }}
-                              transition={{ delay: index * 0.005 }} // Adjust delay as needed
-                            >
-                              {char}
-                            </motion.span>
-                          ))}
-                        </div>
-                      ) : (
-                        <>
-                          <Skeleton className="w-full h-[20px] rounded-full" />
-                          <Skeleton className="w-full h-[20px] rounded-full" />
-                          <Skeleton className="w-full h-[20px] rounded-full" />
-                        </>
-                      )}
-                    </div>
-                  </div>
-                  <div data-orientation="horizontal" role="none" className="shrink-0 bg-border h-[1px] w-full my-4">
-                  </div>
-                </div>
-              </div>
-
-
-            </ScrollArea>
-
-
-
-
+            <Chat />
             {/* prompt box */}
-            <motion.div
-              animate={{
-                y: animatePrompt ? [-70, 20, 0] : 1,
-
-              }} // Scale up slightly when animating
-              transition={{ duration: 0.5, ease: "easeInOut" }} // Define the transition
-            >
-              <div className="mx-auto w-full sm:max-w-2xl sm:px-4">
-                <div className="bg-background  space-y-4 flex flex-row items-center gap-2  border-t px-4  shadow-lg sm:rounded-xl sm:border md:py-4 ">
-                  <Command className="rounded-lg border shadow-md mt-4">
-
-                    <CommandList >
-                      <CommandEmpty>No results found.</CommandEmpty>
-                      <CommandGroup heading="Suggestions">
-                        <CommandItem>
-                          <Calendar className="mr-2 h-4 w-4" />
-                          <span>Schedule an email reminder for the
-                            project deadline on Friday at 10 AM</span>
-                        </CommandItem>
-                        <CommandItem>
-                          <Target className="mr-2 h-4 w-4" />
-                          <span>"Remind me to submit the project at 5 PM tomorrow.</span>
-                        </CommandItem>
-                        <CommandItem>
-                          <Calculator className="mr-2 h-4 w-4" />
-                          <span>What is 15% of 280?</span>
-                        </CommandItem>
-                        <Dialog >
-                      <DialogTrigger className="underline flex justify-end">
-                        <span className="text-sm my-2 text-gray-500 ml-80 ">{`+ 10 more suggestions`}</span>
-                      </DialogTrigger>
-
-                      <DialogContent>
-                        <DialogHeader>
-                          <DialogTitle>All Predefined tasks</DialogTitle>
-                        </DialogHeader>
-                        <Separator />
-                        <ScrollArea className="max-h-[500px] px-5 flex flex-row">
-                          <div className='flex flex-row items-center'>
-                            <Calculator className="mr-2 h-4 w-4 text-gray-500 " />
-                            <span className="  text-gray-500 " >What is 15% of 280?</span>
-                            {/* ADD MORE PREDEFINED TASKSs*/}
-                          </div>
-                        
-                        
-                        </ScrollArea>
-                      </DialogContent>
-                    </Dialog>
-                      </CommandGroup>
-                      <CommandSeparator />
-                    </CommandList>
-                    <CommandInput placeholder="Input Prompt." />
-                  </Command>
-                  
-
-
-                  <button className="group h-8 select-none rounded-lg bg-gradient-to-b from-zinc-800 via-zinc-700 to-zinc-600 px-3 text-sm leading-8 text-zinc-50 shadow-[0_-1px_0_1px_rgba(0,0,0,0.8)_inset,0_0_0_1px_rgb(9_9_11)_inset,0_0.5px_0_1.5px_#71717a_inset] hover:bg-gradient-to-b hover:from-zinc-900 hover:via-zinc-900 hover:to-zinc-700 active:shadow-[0_3px_0_0_rgba(0,0,0)_inset]"><span className="block group-active:[transform:translate3d(0,1px,0)]">
-                  <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 256 256"
-                      fill="white "
-                      className='size-4 text-white'
-
-                    >
-                      <path d="M200 32v144a8 8 0 0 1-8 8H67.31l34.35 34.34a8 8 0 0 1-11.32 11.32l-48-48a8 8 0 0 1 0-11.32l48-48a8 8 0 0 1 11.32 11.32L67.31 168H184V32a8 8 0 0 1 16 0Z" />
-                    </svg>
-                    </span></button>
-                    <button className="group h-8 select-none rounded-lg bg-gradient-to-b from-zinc-800 via-zinc-700 to-zinc-600 px-3 text-sm leading-8 text-zinc-50 shadow-[0_-1px_0_1px_rgba(0,0,0,0.8)_inset,0_0_0_1px_rgb(9_9_11)_inset,0_0.5px_0_1.5px_#71717a_inset] hover:bg-gradient-to-b hover:from-zinc-900 hover:via-zinc-900 hover:to-zinc-700 active:shadow-[0_3px_0_0_rgba(0,0,0)_inset]"><span className="block group-active:[transform:translate3d(0,1px,0)]">
-                    <Mic size={15} />
-                    </span></button>
-                  
-                  
-                </div>
-
-
-              </div>
-            </motion.div>
-            <Accordion type="single" collapsible className="w-full border mt-4">
-              <AccordionItem value="item-1">
-                <div className="items-center flex">
-                  <SquareTerminal className='' />
-                  <AccordionTrigger className='ml-2 ' onClick={handleTriggerClick}>Terminal</AccordionTrigger>
-                </div>
-                <AccordionContent className='px-4 '>
-
-                  {/* <Textarea className='h-full mt-2  '/> */}
-                  <div className="flex-1 flex flex-col p-2 overflow-hidden">
-                    <div className="flex-1 flex flex-col gap-2 overflow-auto text-sm">
-                      <div className="text-cyan-600 select-none">$ ls -la</div>
-                      <div>. .. package.json pages vercel.json</div>
-                      <div className="text-cyan-600 select-none">$ npm run dev</div>
-                      <div>...</div>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <div className="text-cyan-600 select-none">{"$Sandbox/>"}</div>
-                      <div className="flex-1">
-                        <Input
-                          className="w-full appearance-none bg-transparent border-0 box-border p-0"
-                          id="terminal-input"
-                          placeholder="Type a command..."
-                        />
-                      </div>
-                      <Button size="sm">Run</Button>
-                    </div>
-                  </div>
-                </AccordionContent>
-              </AccordionItem>
-            </Accordion>
+            <PromptBox animatePrompt={animatePrompt} setAnimatePrompt={setAnimatePrompt} />
+            <Terminal animatePrompt={animatePrompt} setAnimatePrompt={setAnimatePrompt} />
 
           </div>
 
@@ -334,28 +35,11 @@ export default function page() {
         <ResizableHandle withHandle />
         <ResizablePanel defaultSize={45}>
 
-          <div className="flex flex-col items-center h-full bg-white">
-            <div className="flex items-center justify-between w-full  p-4 border-b">
-              <div className="flex space-x-1.5">
-                <div className="w-3 h-3 bg-[#FF605C] rounded-full" />
-                <div className="w-3 h-3 bg-[#FFBD44] rounded-full" />
-                <div className="w-3 h-3 bg-[#00CA4E] rounded-full" />
-              </div>
-              <span className="text-md ">{browserAddress}</span>
-              <div />
-            </div>
-            {/* WEBPAGE */}
-            <div dangerouslySetInnerHTML={{ __html: htmlContent }} />
+          <WebPage />
 
-          </div>
         </ResizablePanel>
       </ResizablePanelGroup>
-
-
-
     </>
-
-
   )
 }
 
