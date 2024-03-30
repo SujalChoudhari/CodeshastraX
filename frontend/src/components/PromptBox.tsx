@@ -127,7 +127,8 @@ function PromptBox({ onSubmitPressed, animatePrompt, setAnimatePrompt }: { onSub
                                 <AlertDialogHeader>
                                     <AlertDialogTitle className='text-center'>User Recognition</AlertDialogTitle>
                                     <AlertDialogDescription className='text-center'>
-                                        Speak "Hello"
+                                        Speak "Hello"<br/>
+                                        <p className='mt-1'>Current User: Soham</p>
                                     </AlertDialogDescription>
                                 </AlertDialogHeader>
                                 <AlertDialogFooter>
