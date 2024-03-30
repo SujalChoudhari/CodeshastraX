@@ -1,5 +1,6 @@
 from llm.InteractiveChat import chatRoute
 from llm.InteractiveChat.command import commandRouter
+from detection import detectionRouter
 from dotenv import load_dotenv
 from fastapi import FastAPI
 import uvicorn
@@ -10,6 +11,7 @@ load_dotenv()
 app = FastAPI()
 app.include_router(chatRoute.router, prefix="/chat")
 app.include_router(commandRouter.router, prefix="/term")
+app.include_router(detectionRouter.router, prefix="/detection")
 
 
 @app.get("/")
