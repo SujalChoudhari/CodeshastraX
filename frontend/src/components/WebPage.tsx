@@ -35,7 +35,6 @@ function WebPage({ browserURL }: { browserURL: string }) {
         return
       }
       const response = await axios.get(`https://cors-anywhere.herokuapp.com/${browserURL}`, {
-        // Add any necessary options for the request
       });
       const modifiedHTML: string = replaceRelativeLinks(response.data);
       setHTMLContent(modifiedHTML);

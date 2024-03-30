@@ -1,1 +1,1 @@
-print(math.factorial(9) / math.factorial(3))
+print("Reading books, taking online courses and attending workshops can help")
