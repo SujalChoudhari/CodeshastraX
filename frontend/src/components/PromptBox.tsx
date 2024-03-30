@@ -2,10 +2,13 @@ import React, { useEffect, useRef, useState } from 'react';
 import {
     Calculator,
     Calendar,
+    Cross,
     Mic,
     Target,
     Timer,
-    User2Icon
+    User2Icon,
+    Voicemail,
+    X
 } from 'lucide-react';
 import {
     Command,
@@ -31,6 +34,7 @@ import {
     AlertDialogTitle,
     AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
+import { Button } from './ui/button';
 
 function PromptBox({ onSubmitPressed, animatePrompt, setAnimatePrompt }: { onSubmitPressed: any, animatePrompt: boolean, setAnimatePrompt: any }) {
     const inputRef = useRef<HTMLInputElement | null>(null);
@@ -119,16 +123,18 @@ function PromptBox({ onSubmitPressed, animatePrompt, setAnimatePrompt }: { onSub
                             <AlertDialogTrigger asChild>
                                 <button className="group block h-12 select-none rounded-lg bg-white px-3 text-sm  text-zinc-950 shadow-[0_-1px_0_0px_#d4d4d8_inset,0_0_0_1px_#f4f4f5_inset,0_0.5px_0_1.5px_#fff_inset] hover:bg-zinc-50 hover:via-zinc-900 hover:to-zinc-800 active:shadow-[-1px_0px_1px_0px_#e4e4e7_inset,1px_0px_1px_0px_#e4e4e7_inset,0px_0.125rem_1px_0px_#d4d4d8_inset]"><span className="block group-active:[transform:translate3d(0,1px,0)]"><User2Icon /></span></button>
                             </AlertDialogTrigger>
-                            <AlertDialogContent>
+                            <AlertDialogContent className='w-[300px]'>
                                 <AlertDialogHeader>
-                                    <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
-                                    <AlertDialogDescription>
-                                        Anin
+                                    <AlertDialogTitle className='text-center'>User Recognition</AlertDialogTitle>
+                                    <AlertDialogDescription className='text-center'>
+                                        Speak "Hello"
                                     </AlertDialogDescription>
                                 </AlertDialogHeader>
                                 <AlertDialogFooter>
-                                    <AlertDialogCancel>Cancel</AlertDialogCancel>
-                                    <AlertDialogAction>Continue</AlertDialogAction>
+                                    <AlertDialogCancel><X/></AlertDialogCancel>
+                                    <Button className='mx-auto'>Speak <Mic className='ml-2'/></Button>
+                                    
+                                    
                                 </AlertDialogFooter>
                             </AlertDialogContent>
                         </AlertDialog>
