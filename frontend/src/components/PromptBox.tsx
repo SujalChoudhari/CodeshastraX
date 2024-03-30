@@ -131,8 +131,8 @@ function PromptBox({ onSubmitPressed, animatePrompt, setAnimatePrompt }: { onSub
                                     </AlertDialogDescription>
                                 </AlertDialogHeader>
                                 <AlertDialogFooter>
-                                    <AlertDialogCancel><X/></AlertDialogCancel>
-                                    <Button className='mx-auto'>Speak <Mic className='ml-2'/></Button>
+                                    <AlertDialogCancel className='absolute top-0 right-0 w-12'><X className=''/></AlertDialogCancel>
+                                    <Button className=' '>Speak <Mic className='ml-2 w-4 h-4'/></Button>
                                     
                                     
                                 </AlertDialogFooter>
