@@ -37,8 +37,8 @@ def response_handler(chat_instance, res: str) -> object:
     browser_url = get_current_browser_ui(res)
 
     final_res = commandExecutor.run_from_prompt(res)
-    final_res = webscrapperExecutor.run_from_prompt(final_res)
     final_res = pythonExecutor.run_from_prompt(res)
+    final_res = webscrapperExecutor.run_from_prompt(final_res)
 
     response = {
         "response": (remove_code_blocks(final_res)),

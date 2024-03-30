@@ -110,7 +110,7 @@ def predict_speaker(model_load_path, sample_dir, unknown_file_path):
 if __name__ == "__main__":
     model_load_path = "./sample/speaker_recognition_model.pkl"
     sample_dir = "./sample"
-    unknown_file_path = "./sample/unknown2.wav"
+    unknown_file_path = "./sample/unknown.wav"
     predicted_speaker, sample_serial, accuracy = predict_speaker(
         model_load_path, sample_dir, unknown_file_path
     )
