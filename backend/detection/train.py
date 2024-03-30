@@ -3,7 +3,6 @@ import numpy as np
 import librosa
 from sklearn.ensemble import RandomForestClassifier
 import joblib
-
 # Function to extract features from audio file
 def extract_features(file_path):
     y, sr = librosa.load(file_path, sr=None)  # Load audio file
@@ -36,11 +35,14 @@ def train_model(sample_dir, model_save_path):
     # Save the trained model to disk
     joblib.dump((clf, label_to_index), model_save_path)
 
-# # Directory containing sample wave files of each user
-# sample_dir = "sample"
 
-# # Path to save the trained model
-# model_save_path = "./sample/speaker_recognition_model.pkl"
 
-# # Train the model and save it
-# train_model(sample_dir, model_save_path)
+if __name__ == "__main__":
+    # # Directory containing sample wave files of each user
+    sample_dir = "sample"
+
+    # Path to save the trained model
+    model_save_path = "./sample/speaker_recognition_model.pkl"
+
+    # Train the model and save it
+    train_model(sample_dir, model_save_path)
