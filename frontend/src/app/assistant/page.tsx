@@ -21,20 +21,30 @@ export default function Page() {
   const [chatMessages, setChatMessages] = useState<string[]>([]);
   const [animatePrompt, setAnimatePrompt] = useState(false);
   const [browserURL, setBrowserURL] = useState("");
+  const [timeMs, setTimeMs] = useState(null);
+
 
   const onInputSent = async (input: string) => {
     const command = input.trim();
     try {
-      const response = await axios.get(`http://127.0.0.1:80/chat/chat?message=${encodeURIComponent(command)}`);
-      setChatMessages(prevMessages => [...prevMessages, command, response.data.response]);
-      console.log(response.data)
-      if (response.data.browser_url) {
-        setBrowserURL(response.data.browser_url)
-      }
+       const response = await axios.get(`http://127.0.0.1:80/chat/chat?message=${encodeURIComponent(command)}`);
+       setChatMessages(prevMessages => [...prevMessages, command, response.data.response]);
+       console.log(response.data);
+   
+       if (response.data.browser_url) {
+         setBrowserURL(response.data.browser_url);
+       }
+   
+       // Check if response.data.time_ms exists and set it
+       if (response.data.time_ms) {
+         setTimeMs(response.data.time_ms);
+       }
+       console.log(response.data.time_ms);
     } catch (error) {
-      console.error('Error sending input:', error);
+       console.error('Error sending input:', error);
     }
-  };
+   };
+   
 
   useEffect(() => {
     const resetChat = async () => {
@@ -89,7 +99,7 @@ export default function Page() {
 
             <div className='text-center '>WaveByte</div>
             <Chat chatData={chatMessages.map((message, index) => ({ isUser: index % 2 === 0, message }))} />
-            <PromptBox onSubmitPressed={onInputSent} animatePrompt={animatePrompt} setAnimatePrompt={setAnimatePrompt} />
+            <PromptBox onSubmitPressed={onInputSent} animatePrompt={animatePrompt} setAnimatePrompt={setAnimatePrompt} timeMs={timeMs}/>
             <Terminal animatePrompt={animatePrompt} setAnimatePrompt={setAnimatePrompt} />
           </div>
         </ResizablePanel>
