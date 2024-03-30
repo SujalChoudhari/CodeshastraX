@@ -33,7 +33,7 @@ function ChatbotResponse({ message }: { message: string }) {
                         <motion.div
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
-                            transition={{ duration: 1 }} // Adjust duration as needed
+                            transition={{ duration: 0.7 }} // Adjust duration as needed
                         >
                             <Markdown>
                                 {chatbotResponse}
