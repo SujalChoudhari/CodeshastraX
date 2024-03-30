@@ -18,8 +18,9 @@ function PromptBox({ animatePrompt, setAnimatePrompt }: { animatePrompt: boolean
         >
             <div className="mx-auto w-full sm:max-w-2xl sm:px-4">
                 <div className="bg-background  space-y-4 flex flex-row items-center gap-2  border-t px-4  shadow-lg sm:rounded-xl sm:border md:py-4 ">
+                    
                     <Command className="rounded-lg border shadow-md mt-4">
-
+<ScrollArea className='h-[150px]'>
                         <CommandList >
                             <CommandEmpty>No results found.</CommandEmpty>
                             <CommandGroup heading="Suggestions">
@@ -36,32 +37,14 @@ function PromptBox({ animatePrompt, setAnimatePrompt }: { animatePrompt: boolean
                                     <Calculator className="mr-2 h-4 w-4" />
                                     <span>What is 15% of 280?</span>
                                 </CommandItem>
-                                <Dialog >
-                                    <DialogTrigger className="underline flex justify-end">
-                                        <span className="text-sm my-2 text-gray-500 ml-80 ">{`+ 10 more suggestions`}</span>
-                                    </DialogTrigger>
-
-                                    <DialogContent>
-                                        <DialogHeader>
-                                            <DialogTitle>All Predefined tasks</DialogTitle>
-                                        </DialogHeader>
-                                        <Separator />
-                                        <ScrollArea className="max-h-[500px] px-5 flex flex-row">
-                                            <div className='flex flex-row items-center'>
-                                                <Calculator className="mr-2 h-4 w-4 text-gray-500 " />
-                                                <span className="  text-gray-500 " >What is 15% of 280?</span>
-                                                {/* ADD MORE PREDEFINED TASKSs*/}
-                                            </div>
-
-
-                                        </ScrollArea>
-                                    </DialogContent>
-                                </Dialog>
+                                
                             </CommandGroup>
                             <CommandSeparator />
                         </CommandList>
+                        </ScrollArea>
                         <CommandInput placeholder="Input Prompt." />
                     </Command>
+                    
 
 
 
