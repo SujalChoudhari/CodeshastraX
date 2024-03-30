@@ -1,0 +1,1 @@
+print(math.factorial(9) / math.factorial(3))

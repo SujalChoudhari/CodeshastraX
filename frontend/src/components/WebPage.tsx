@@ -1,9 +1,8 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 
-function WebPage() {
-    const [htmlContent, setHTMLContent] = useState("")
-  const [browserAddress, setBrowserAddress] = useState("")
+function WebPage({ browserURL }: { browserURL: string }) {
+  const [htmlContent, setHTMLContent] = useState("")
 
 
 
@@ -20,7 +19,7 @@ function WebPage() {
       const href = anchor.getAttribute('href');
       if (href && !href.startsWith('http')) { // Check if href is relative
         // Replace relative link with browserAddress + relative link
-        anchor.setAttribute('href', browserAddress + href);
+        anchor.setAttribute('href', browserURL + href);
       }
     });
 
@@ -31,11 +30,11 @@ function WebPage() {
 
   async function fetchData() {
     try {
-      if (browserAddress == "") {
+      if (browserURL == "") {
         setHTMLContent("Web Pages will be shown Here")
         return
       }
-      const response = await axios.get(`https://cors-anywhere.herokuapp.com/${browserAddress}`, {
+      const response = await axios.get(`https://cors-anywhere.herokuapp.com/${browserURL}`, {
         // Add any necessary options for the request
       });
       const modifiedHTML: string = replaceRelativeLinks(response.data);
@@ -45,7 +44,7 @@ function WebPage() {
 
       // Open a popup window with the browser address on error
       const popupWindow = window.open(
-        browserAddress,
+        browserURL,
         '_blank',
         `width=${660},height=${screen.height},left=${screen.width / 2 - 660 / 2},toolbar=no,scrollbars=yes,status=no,resizable=yes`
       );
@@ -62,22 +61,22 @@ function WebPage() {
     return () => {
       clearTimeout(timeoutId);
     };
-  }, [browserAddress]);
+  }, [browserURL]);
   return (
     <div className="flex flex-col items-center h-full bg-white">
-            <div className="flex items-center justify-between w-full  p-4 border-b">
-              <div className="flex space-x-1.5">
-                <div className="w-3 h-3 bg-[#FF605C] rounded-full" />
-                <div className="w-3 h-3 bg-[#FFBD44] rounded-full" />
-                <div className="w-3 h-3 bg-[#00CA4E] rounded-full" />
-              </div>
-              <span className="text-md ">{browserAddress}</span>
-              <div />
-            </div>
-            {/* WEBPAGE */}
-            <div dangerouslySetInnerHTML={{ __html: htmlContent }} />
+      <div className="flex items-center justify-between w-full  p-4 border-b">
+        <div className="flex space-x-1.5">
+          <div className="w-3 h-3 bg-[#FF605C] rounded-full" />
+          <div className="w-3 h-3 bg-[#FFBD44] rounded-full" />
+          <div className="w-3 h-3 bg-[#00CA4E] rounded-full" />
+        </div>
+        <span className="text-md ">{browserURL}</span>
+        <div />
+      </div>
+      {/* WEBPAGE */}
+      <div dangerouslySetInnerHTML={{ __html: htmlContent }} />
 
-          </div>
+    </div>
   )
 }
 

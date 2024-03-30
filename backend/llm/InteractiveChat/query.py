@@ -1,4 +1,6 @@
 import google.generativeai as genai
+
+
 class GenerativeAIChat:
     def __init__(
         self,
@@ -49,9 +51,9 @@ class GenerativeAIChat:
 
     def send_message(self, message) -> str:
         if self.convo is None:
+            self.start_chat()
             raise ValueError(
                 "No conversation has been started. Call start_chat method first."
             )
         self.convo.send_message(message)
         return self.convo.last.text
-

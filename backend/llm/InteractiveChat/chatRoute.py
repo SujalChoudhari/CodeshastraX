@@ -2,6 +2,7 @@ from fastapi import APIRouter
 from llm.InteractiveChat.reshandler import response_handler
 from llm.InteractiveChat.query import GenerativeAIChat
 from llm.prompts import PromptLibrary
+import time
 
 router = APIRouter()
 import os
@@ -29,8 +30,16 @@ async def _start_chat():
 
 @router.get("/chat")
 async def _chat(message: str):
+    start_time = time.time()
+    if not CHAT_INTERFACE.convo:
+        _start_chat()
     res = CHAT_INTERFACE.send_message(message)
+    print(res)
     modi_res = response_handler(CHAT_INTERFACE, res)
+    end_time = time.time()
+    execution_time = end_time - start_time
+
+    modi_res["time_ms"] = execution_time * 1000
     return modi_res
 
 

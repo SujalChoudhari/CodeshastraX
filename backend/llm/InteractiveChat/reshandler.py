@@ -2,6 +2,28 @@ from .python.pythonExecutor import PythonExecutor
 from .command.commandExecutor import CommandExecutor
 from .webscrapper.webscrappernExecutor import WebScrapperExecutor
 from .browserExecutor import get_current_browser_ui
+import re
+
+
+def remove_code_blocks(text):
+    # Define the regular expression pattern to match code blocks
+    pattern = r"```(.*?)```"
+
+    # Find all code blocks in the text
+    code_blocks = re.findall(pattern, text, re.DOTALL)
+
+    # Filter code blocks containing "exec" or "scrape"
+    filtered_code_blocks = [
+        code_block
+        for code_block in code_blocks
+        if "exec" in code_block or "scrape" in code_block
+    ]
+
+    # Replace filtered code blocks with empty string
+    for code_block in filtered_code_blocks:
+        text = text.replace(f"```{code_block}```", "")
+
+    return text
 
 
 def response_handler(chat_instance, res: str) -> object:
@@ -10,29 +32,16 @@ def response_handler(chat_instance, res: str) -> object:
     pythonExecutor = PythonExecutor(chat_instance=chat_instance)
     commandExecutor = CommandExecutor(chat_instance=chat_instance)
     webscrapperExecutor = WebScrapperExecutor(chat_instance=chat_instance)
-
-    modi_res = pythonExecutor.run_from_prompt(res)
-
-    if modi_res != res:
-        executed_code = True
-
-    if not executed_code:
-        modi2_res = commandExecutor.run_from_prompt(modi_res)
-
-        if modi2_res != modi_res:
-            executed_command = True
-
-        if not executed_command:
-            browser_url = get_current_browser_ui(modi_res)
-            modi3_res = webscrapperExecutor.get_content(browser_url)
+    final_res = ResourceWarning
 
     browser_url = get_current_browser_ui(res)
+
+    final_res = commandExecutor.run_from_prompt(res)
+    final_res = webscrapperExecutor.run_from_prompt(final_res)
+    final_res = pythonExecutor.run_from_prompt(res)
+
     response = {
-        "response": (
-            modi3_res
-            if not executed_command
-            else modi2_res if not executed_code else modi_res
-        ),
+        "response": (remove_code_blocks(final_res)),
         "executed_code": executed_code,
         "executed_command": executed_command,
         "browser_url": browser_url,

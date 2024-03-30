@@ -1,21 +1,26 @@
-import React, { useEffect, useState } from 'react'
-import { ScrollArea } from '@/components/ui/scroll-area'
-
-import { GitGraph, User2Icon } from 'lucide-react'
-import { motion } from 'framer-motion';
-import { Skeleton } from './ui/skeleton';
-import UserChat from './userChat';
+import React from 'react';
+import { ScrollArea } from '@/components/ui/scroll-area';
 import ChatbotResponse from './ui/ChatbotResponse';
+import UserChat from './UserChat';
+interface ChatMessage {
+    isUser: boolean;
+    message: string;
+}
 
-export default function Chat() {
+interface ChatProps {
+    chatData: ChatMessage[];
+}
 
+export default function Chat({ chatData }: ChatProps) {
     return (
         <ScrollArea className="mt-16 min-h-max h-[460px]">
-
             <div className="mx-auto max-w-2xl px-4">
-                <UserChat />
-                <ChatbotResponse />
+                {chatData.map((chat: any, index: number) => (
+                    <React.Fragment key={index}>
+                        {chat.isUser ? <UserChat message={chat.message} /> : <ChatbotResponse message={chat.message} />}
+                    </React.Fragment>
+                ))}
             </div>
-       </ScrollArea>
-    )
+        </ScrollArea>
+    );
 }

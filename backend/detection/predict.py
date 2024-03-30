@@ -5,7 +5,7 @@ import librosa
 import joblib
 from sklearn.metrics import accuracy_score
 import shutil
-from train import train_model
+from .train import train_model
 
 
 # Function to extract features from audio file

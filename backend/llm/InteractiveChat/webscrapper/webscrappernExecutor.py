@@ -21,7 +21,9 @@ class WebScrapperExecutor:
         else:
             return response
 
-    def get_content(url: str):
+    def get_content(self, url: str | None):
+        if url is None:
+            return "", []
         web_url = url.strip()
         try:
             # Fetch the HTML content of the webpage
@@ -46,8 +48,8 @@ class WebScrapperExecutor:
             # Take only the top 10 URLs
             top_10_links = links[:10]
 
-            return text, top_10_links
+            return text + "".join(top_10_links)
 
         except requests.RequestException as e:
             print("Error fetching content:", e)
-            return None, []
+            return ""
