@@ -32,7 +32,7 @@ function Terminal({ animatePrompt, setAnimatePrompt }: { animatePrompt: boolean,
     };
 
     return (
-        <Accordion type="single" collapsible className="w-full border mt-4">
+        <Accordion type="single" collapsible className="w-full border mt-4 z-10">
             <AccordionItem value="item-1">
                 <div className="items-center flex">
                     <SquareTerminal className='' />

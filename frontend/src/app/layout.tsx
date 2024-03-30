@@ -4,7 +4,10 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "react-hot-toast";
 import { FloatingNav } from "@/components/ui/floating-navbar";
+
+
 const inter = Inter({ subsets: ["latin"] });
+
 
 export const metadata: Metadata = {
   // manifest: "./manifest.json",
@@ -18,10 +21,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-
+      
 
     <html lang="en" className="">
       <body className={inter.className}>
+      
+      
+        
         <Toaster />
           {children}
       </body>
