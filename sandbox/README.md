@@ -1,1 +1,1 @@
-This is a sandbox the Tool Uses
+This is a sandbox the Tool that is used for running code and commands.

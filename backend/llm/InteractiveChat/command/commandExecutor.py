@@ -4,14 +4,15 @@ class CommandExecutor:
     def __init__(self, chat_instance):
         self.chat_instance = chat_instance
 
-    def execute_from_prompt(self, response):
+    def run_from_propmt(self, response):
         cmd_command = (
             response.split(f"```{CommandExecutor.token}")[1].split("```")[0].strip()
         )
-        out = CommandExecutor.execute(cmd_command)
-
-        self.chat_instance.chat_with_ai(out)
-        return
+        if cmd_command != None and cmd_command != "":
+            out = CommandExecutor.execute(cmd_command)
+            return self.chat_instance.send_message(message=out)
+        else:
+            return response
 
     def execute(command):
         """

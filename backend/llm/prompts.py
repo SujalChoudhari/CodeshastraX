@@ -86,18 +86,18 @@ dir # this is executed
 """,
 )
 
-# PromptLibrary.add_tool(
-#     "Broswer",
-#     """
-# You can open browser with given link for user.
-# ```browser
-# https://url.which/you/want?to=search_for
-# ```
-# You can use browser to find the latest data for user.
-# Prefer it to show changing data to user.
-# You cannot see what is opened on screen.
-# """,
-# )
+PromptLibrary.add_tool(
+    "Broswer",
+    """
+You can open browser with given link for user.
+```browser
+https://url.which/you/want?to=search_for
+```
+You can use browser to find the latest data for user.
+Prefer it to show changing data to user.
+You cannot see what is opened on screen.
+""",
+)
 
 
 # PromptLibrary.add_tool(
