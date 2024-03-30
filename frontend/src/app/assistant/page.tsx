@@ -5,6 +5,7 @@ import {
   ResizablePanel,
   ResizablePanelGroup,
 } from "@/components/ui/resizable"
+import styles from './window.module.css';
 
 import {
   Calculator,
@@ -57,6 +58,12 @@ export default function page() {
   )
 
   const [chatbotResponse, setChatbotResponse] = useState<string | null>(null);
+  const [animatePrompt, setAnimatePrompt] = useState(false); // State to control animation
+  const handleTriggerClick = () => {
+    setAnimatePrompt(true); // Toggle animation state
+    setTimeout(() => setAnimatePrompt(false), 500); // Reset animation state after 500ms
+  };
+
 
   useEffect(() => {
     // Simulate fetching the chatbot response from the backend
@@ -68,6 +75,8 @@ export default function page() {
 
     fetchResponse();
   }, []); // Empty dependency array means this effect runs once on component mount
+
+
   return (
 
 
@@ -78,12 +87,12 @@ export default function page() {
         direction="horizontal"
         className=" rounded-lg border"
       >
-        <ResizablePanel defaultSize={60}>
-          <div className="flex flex-col">
+        <ResizablePanel defaultSize={55}>
+          <div className="h-screen flex flex-col">
 
 
 
-            <ScrollArea className="mt-16 min-h-[460px]">
+            <ScrollArea className="mt-16 min-h-max h-[460px]">
 
               <div className="mx-auto max-w-2xl px-4">
                 <div>
@@ -139,102 +148,121 @@ export default function page() {
 
 
             </ScrollArea>
-            
+
 
 
 
             {/* prompt box */}
-            <div className="mx-auto w-full sm:max-w-2xl sm:px-4">
-              <div className="bg-background  space-y-4 flex flex-row items-center gap-2  border-t px-4  shadow-lg sm:rounded-xl sm:border md:py-4 ">
-                <Command className="rounded-lg border shadow-md mt-4">
+            <motion.div
+              animate={{
+                y: animatePrompt ? [-70, 20, 0] : 1,
 
-                  <CommandList >
-                    <CommandEmpty>No results found.</CommandEmpty>
-                    <CommandGroup heading="Suggestions">
-                      <CommandItem>
-                        <Calendar className="mr-2 h-4 w-4" />
-                        <span>Calendar</span>
-                      </CommandItem>
-                      <CommandItem>
-                        <Smile className="mr-2 h-4 w-4" />
-                        <span>Search Emoji</span>
-                      </CommandItem>
-                      <CommandItem>
-                        <Calculator className="mr-2 h-4 w-4" />
-                        <span>Calculator</span>
-                      </CommandItem>
-                    </CommandGroup>
-                    <CommandSeparator />
-                  </CommandList>
-                  <CommandInput placeholder="Input Prompt." />
-                </Command>
+              }} // Scale up slightly when animating
+              transition={{ duration: 0.5, ease: "easeInOut" }} // Define the transition
+            >
+              <div className="mx-auto w-full sm:max-w-2xl sm:px-4">
+                <div className="bg-background  space-y-4 flex flex-row items-center gap-2  border-t px-4  shadow-lg sm:rounded-xl sm:border md:py-4 ">
+                  <Command className="rounded-lg border shadow-md mt-4">
+
+                    <CommandList >
+                      <CommandEmpty>No results found.</CommandEmpty>
+                      <CommandGroup heading="Suggestions">
+                        <CommandItem>
+                          <Calendar className="mr-2 h-4 w-4" />
+                          <span>Calendar</span>
+                        </CommandItem>
+                        <CommandItem>
+                          <Smile className="mr-2 h-4 w-4" />
+                          <span>Search Emoji</span>
+                        </CommandItem>
+                        <CommandItem>
+                          <Calculator className="mr-2 h-4 w-4" />
+                          <span>Calculator</span>
+                        </CommandItem>
+                      </CommandGroup>
+                      <CommandSeparator />
+                    </CommandList>
+                    <CommandInput placeholder="Input Prompt." />
+                  </Command>
 
 
-                <Button type="submit" size="icon" variant="outline" disabled  >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 256 256"
-                    fill=""
-                    className='size-4'
+                  <Button type="submit" size="icon" variant="outline" disabled  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 256 256"
+                      fill=""
+                      className='size-4'
 
-                  >
-                    <path d="M200 32v144a8 8 0 0 1-8 8H67.31l34.35 34.34a8 8 0 0 1-11.32 11.32l-48-48a8 8 0 0 1 0-11.32l48-48a8 8 0 0 1 11.32 11.32L67.31 168H184V32a8 8 0 0 1 16 0Z" />
-                  </svg>
-                  <span className="sr-only">Send message</span>
-                </Button>
-                <Button type="submit" size="icon" variant="outline" disabled >
-                  <Mic size={18} />
+                    >
+                      <path d="M200 32v144a8 8 0 0 1-8 8H67.31l34.35 34.34a8 8 0 0 1-11.32 11.32l-48-48a8 8 0 0 1 0-11.32l48-48a8 8 0 0 1 11.32 11.32L67.31 168H184V32a8 8 0 0 1 16 0Z" />
+                    </svg>
+                    <span className="sr-only">Send message</span>
+                  </Button>
+                  <Button type="submit" size="icon" variant="outline" disabled >
+                    <Mic size={18} />
 
-                  <span className="sr-only">Send message</span>
-                </Button>
+                    <span className="sr-only">Send message</span>
+                  </Button>
+                </div>
+
+
               </div>
-             
-            </div>
-             <Accordion type="single" collapsible className="w-full border mt-4">
-      <AccordionItem value="item-1">
-        <div className="items-center flex">
-          <SquareTerminal className=''/>
-          <AccordionTrigger className='ml-2'>Terminal</AccordionTrigger>
-        </div>
-        <AccordionContent className='px-4 '>
+            </motion.div>
+            <Accordion type="single" collapsible className="w-full border mt-4">
+              <AccordionItem value="item-1">
+                <div className="items-center flex">
+                  <SquareTerminal className='' />
+                  <AccordionTrigger className='ml-2 ' onClick={handleTriggerClick}>Terminal</AccordionTrigger>
+                </div>
+                <AccordionContent className='px-4 '>
 
-          {/* <Textarea className='h-full mt-2  '/> */}
-          <div className="flex-1 flex flex-col p-2 overflow-hidden">
-        <div className="flex-1 flex flex-col gap-2 overflow-auto text-sm">
-          <div className="text-cyan-600 select-none">$ ls -la</div>
-          <div>. .. package.json pages vercel.json</div>
-          <div className="text-cyan-600 select-none">$ npm run dev</div>
-          <div>...</div>
-        </div>
-        <div className="flex items-center gap-2">
-          <div className="text-cyan-600 select-none">{"$Sandbox/>"}</div>
-          <div className="flex-1">
-            <Input
-              className="w-full appearance-none bg-transparent border-0 box-border p-0"
-              id="terminal-input"
-              placeholder="Type a command..."
-            />
+                  {/* <Textarea className='h-full mt-2  '/> */}
+                  <div className="flex-1 flex flex-col p-2 overflow-hidden">
+                    <div className="flex-1 flex flex-col gap-2 overflow-auto text-sm">
+                      <div className="text-cyan-600 select-none">$ ls -la</div>
+                      <div>. .. package.json pages vercel.json</div>
+                      <div className="text-cyan-600 select-none">$ npm run dev</div>
+                      <div>...</div>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <div className="text-cyan-600 select-none">{"$Sandbox/>"}</div>
+                      <div className="flex-1">
+                        <Input
+                          className="w-full appearance-none bg-transparent border-0 box-border p-0"
+                          id="terminal-input"
+                          placeholder="Type a command..."
+                        />
+                      </div>
+                      <Button size="sm">Run</Button>
+                    </div>
+                  </div>
+                </AccordionContent>
+              </AccordionItem>
+            </Accordion>
+
           </div>
-          <Button size="sm">Run</Button>
-        </div>
-      </div>
-        </AccordionContent>
-      </AccordionItem>
-    </Accordion>
-           
-          </div>
-          
+
         </ResizablePanel>
         <ResizableHandle withHandle />
-        <ResizablePanel defaultSize={40}>
-          <div className="flex h-[80vh] items-center justify-center p-24">
-            <span className="font-semibold">Content</span>
+        <ResizablePanel defaultSize={45}>
 
-           
+          <div className="flex flex-col items-center justify-center bg-white">
+            <div className="flex items-center justify-between w-full  p-4 border-b">
+              <div className="flex space-x-1.5">
+                <div className="w-3 h-3 bg-[#FF605C] rounded-full" />
+                <div className="w-3 h-3 bg-[#FFBD44] rounded-full" />
+                <div className="w-3 h-3 bg-[#00CA4E] rounded-full" />
+              </div>
+              <span className="text-md ">http://localhost:3000/assistant#gsc.tab=0</span>
+              <div />
+            </div>
+            <div className="flex items-center justify-center w-full  h-full bg-gray-100">
+              <iframe src='/browser.html' className='w-full h-[800px]' />
+            </div>
           </div>
         </ResizablePanel>
       </ResizablePanelGroup>
-     
+
 
 
     </>

@@ -1,0 +1,39 @@
+.window {
+    /* background-color: #111111; */
+    /* color: #fff; */
+    border: 1px solid #666;
+    border-radius: 4px;
+    margin: 16px 8px;
+    padding: 16px;
+}
+
+.window-bar {
+    padding-bottom: 16px;
+}
+
+.window-dots {
+    display: flex;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-right: 4px;
+    /* Define different colors for each dot */
+}
+
+.dot:first-child {
+    background-color: #ff605c;
+    /* Red color */
+}
+
+.dot:nth-child(2) {
+    background-color: #4ec7f3;
+    /* Blue color */
+}
+
+.dot:nth-child(3) {
+    background-color: #ffcc00;
+    /* Yellow color */
+}
