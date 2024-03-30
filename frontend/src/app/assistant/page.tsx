@@ -39,6 +39,7 @@ import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import { Skeleton } from '@/components/ui/skeleton'
+import { motion } from 'framer-motion'
 
 export default function page() {
 
@@ -52,8 +53,8 @@ export default function page() {
     // Simulate fetching the chatbot response from the backend
     const fetchResponse = () => {
       setTimeout(() => {
-        setChatbotResponse('This is the chatbot response.');
-      }, 2000); // Simulate a 2-second delay
+        setChatbotResponse('Concert Tickets: This might seem obvious, but its a surefire way to make your friends birthday unforgettable. Check out their favorite artists tour schedule and snag some tickets (bonus points for VIP experience if it fits your budget');
+      }, 200); // Simulate a 2-second delay
     };
 
     fetchResponse();
@@ -101,7 +102,18 @@ export default function page() {
                     <div className="ml-4 flex-1 space-y-2 overflow-hidden pl-2">
 
                       {chatbotResponse ? (
-                        chatbotResponse
+                        <div>
+                          {chatbotResponse.split('').map((char, index) => (
+                            <motion.span
+                              key={index}
+                              initial={{ opacity: 0 }}
+                              animate={{ opacity: 1 }}
+                              transition={{ delay: index * 0.005 }} // Adjust delay as needed
+                            >
+                              {char}
+                            </motion.span>
+                          ))}
+                        </div>
                       ) : (
                         <>
                           <Skeleton className="w-full h-[20px] rounded-full" />
@@ -122,7 +134,7 @@ export default function page() {
 
 
             {/* prompt box */}
-            <div className="mx-auto w-full sm:max-w-2xl sm:px-4 ">
+            <div className="mx-auto w-full sm:max-w-2xl sm:px-4  mb-24">
               <div className="bg-background  space-y-4 flex flex-row items-center gap-2  border-t px-4 py-2 shadow-lg sm:rounded-t-xl sm:border md:py-4 ">
                 <Command className="rounded-lg border shadow-md mt-4 ">
 
