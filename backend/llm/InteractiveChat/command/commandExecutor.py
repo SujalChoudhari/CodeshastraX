@@ -4,7 +4,9 @@ class CommandExecutor:
     def __init__(self, chat_instance):
         self.chat_instance = chat_instance
 
-    def run_from_propmt(self, response):
+    def run_from_prompt(self, response):
+        if f"```{CommandExecutor.token}" not in response:
+            return response
         cmd_command = (
             response.split(f"```{CommandExecutor.token}")[1].split("```")[0].strip()
         )
