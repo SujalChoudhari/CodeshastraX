@@ -1,1 +1,2 @@
-print("Reading books, taking online courses and attending workshops can help")
+import math
+print(math.sqrt(3600))
