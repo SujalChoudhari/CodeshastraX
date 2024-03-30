@@ -30,16 +30,22 @@ function ChatbotResponse({ message }: { message: string }) {
                 <div id="mkd" className="ml-4 flex-1 space-y-2 overflow-hidden pl-2 ">
 
                     {chatbotResponse ? (
-                        <Markdown>
-                            {chatbotResponse}
-                        </Markdown>
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ duration: 1 }} // Adjust duration as needed
+                        >
+                            <Markdown>
+                                {chatbotResponse}
+                            </Markdown>
+                        </motion.div>
                     ) : (
                         <>
                             <Skeleton className="w-full h-[20px] rounded-full" />
                             <Skeleton className="w-full h-[20px] rounded-full" />
                             <Skeleton className="w-full h-[20px] rounded-full" />
                         </>
-                    )}
+                    )} 
                 </div>
             </div>
             <div data-orientation="horizontal" role="none" className="shrink-0 bg-border h-[1px] w-full my-4">
