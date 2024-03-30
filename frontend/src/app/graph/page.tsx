@@ -24,7 +24,7 @@ export default function querygraph() {
   )
 }
 
-function LineChart(props) {
+function LineChart(props:any) {
   return (
     <div {...props}>
       <ResponsiveLine

@@ -3,7 +3,8 @@ import {
     Calculator,
     Calendar,
     Mic,
-    Target
+    Target,
+    User2Icon
 } from 'lucide-react';
 import {
     Command,
@@ -18,6 +19,17 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { ScrollArea } from './ui/scroll-area';
 import { Separator } from './ui/separator';
 import { motion } from 'framer-motion';
+import {
+    AlertDialog,
+    AlertDialogAction,
+    AlertDialogCancel,
+    AlertDialogContent,
+    AlertDialogDescription,
+    AlertDialogFooter,
+    AlertDialogHeader,
+    AlertDialogTitle,
+    AlertDialogTrigger,
+} from "@/components/ui/alert-dialog"
 
 function PromptBox({ onSubmitPressed, animatePrompt, setAnimatePrompt }: { onSubmitPressed: any, animatePrompt: boolean, setAnimatePrompt: any }) {
     const inputRef = useRef<HTMLInputElement | null>(null);
@@ -96,7 +108,8 @@ function PromptBox({ onSubmitPressed, animatePrompt, setAnimatePrompt }: { onSub
                         </ScrollArea>
                         <CommandInput ref={inputRef} placeholder="Input Prompt." />
                     </Command>
-                    
+                    <button className="group h-12 select-none rounded-lg bg-white px-3 text-sm  text-zinc-950 shadow-[0_-1px_0_0px_#d4d4d8_inset,0_0_0_1px_#f4f4f5_inset,0_0.5px_0_1.5px_#fff_inset] hover:bg-zinc-50 hover:via-zinc-900 hover:to-zinc-800 active:shadow-[-1px_0px_1px_0px_#e4e4e7_inset,1px_0px_1px_0px_#e4e4e7_inset,0px_0.125rem_1px_0px_#d4d4d8_inset]"><span className="block group-active:[transform:translate3d(0,1px,0)]"><User2Icon/></span></button>
+
 
                     <button onClick={onSubmitClicked} className="group h-8 select-none rounded-lg bg-gradient-to-b from-zinc-800 via-zinc-700 to-zinc-600 px-3 text-sm leading-8 text-zinc-50 shadow-[0_-1px_0_1px_rgba(0,0,0,0.8)_inset,0_0_0_1px_rgb(9_9_11)_inset,0_0.5px_0_1.5px_#71717a_inset] hover:bg-gradient-to-b hover:from-zinc-900 hover:via-zinc-900 hover:to-zinc-700 active:shadow-[0_3px_0_0_rgba(0,0,0)_inset]">
                         <span className="block group-active:[transform:translate3d(0,1px,0)]">
@@ -105,12 +118,30 @@ function PromptBox({ onSubmitPressed, animatePrompt, setAnimatePrompt }: { onSub
                             </svg>
                         </span>
                     </button>
-
-                    <button onClick={() => setIsListening(!isListening)} className="group h-8 select-none rounded-lg bg-gradient-to-b from-zinc-800 via-zinc-700 to-zinc-600 px-3 text-sm leading-8 text-zinc-50 shadow-[0_-1px_0_1px_rgba(0,0,0,0.8)_inset,0_0_0_1px_rgb(9_9_11)_inset,0_0.5px_0_1.5px_#71717a_inset] hover:bg-gradient-to-b hover:from-zinc-900 hover:via-zinc-900 hover:to-zinc-700 active:shadow-[0_3px_0_0_rgba(0,0,0)_inset]">
+                    <AlertDialog>
+                                <AlertDialogTrigger asChild>
+                                <button onClick={() => setIsListening(!isListening)} className="group h-8 select-none rounded-lg bg-gradient-to-b from-zinc-800 via-zinc-700 to-zinc-600 px-3 text-sm leading-8 text-zinc-50 shadow-[0_-1px_0_1px_rgba(0,0,0,0.8)_inset,0_0_0_1px_rgb(9_9_11)_inset,0_0.5px_0_1.5px_#71717a_inset] hover:bg-gradient-to-b hover:from-zinc-900 hover:via-zinc-900 hover:to-zinc-700 active:shadow-[0_3px_0_0_rgba(0,0,0)_inset]">
                         <span className="block group-active:[transform:translate3d(0,1px,0)]">
+                            
                             <Mic size={15} />
                         </span>
                     </button>
+                                </AlertDialogTrigger>
+                                <AlertDialogContent>
+                                    <AlertDialogHeader>
+                                        <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+                                        <AlertDialogDescription>
+                                            Anin
+                                        </AlertDialogDescription>
+                                    </AlertDialogHeader>
+                                    <AlertDialogFooter>
+                                        <AlertDialogCancel>Cancel</AlertDialogCancel>
+                                        <AlertDialogAction>Continue</AlertDialogAction>
+                                    </AlertDialogFooter>
+                                </AlertDialogContent>
+                            </AlertDialog>
+
+                   
                 </div>
             </div>
         </motion.div>
