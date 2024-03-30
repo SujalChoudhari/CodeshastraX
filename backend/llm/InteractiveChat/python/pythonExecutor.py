@@ -2,7 +2,7 @@ import subprocess
 
 
 class PythonExecutor:
-    token = "run"
+    token = "save"
 
     def __init__(self, chat_instance):
         self.chat_instance = chat_instance
@@ -14,25 +14,9 @@ class PythonExecutor:
             response.split(f"```{PythonExecutor.token}")[1].split("```")[0].strip()
         )
         if python_code != None and python_code != "":
-            out = self.execute_code(python_code)
-            return self.chat_instance.send_message(message=out)
-        else:
-            return response
+            self.execute_code(python_code)
+        return response
 
     def execute_code(self, python_code):
-        with open("temp.py", "w") as f:
-            f.write(python_code)
-        try:
-            result = subprocess.run(
-                "python temp.py", shell=True, capture_output=True, text=True, check=True
-            )
-            if result.stdout != "":
-                return result.stdout
-            else:
-                if result.stderr != "":
-                    return "\nError: " + result.stderr
-                else:
-                    return "Code return code: " + str(result.returncode)
-
-        except subprocess.CalledProcessError as e:
-            return f"Error: {e}"
+        with open("../sandbox/user.txt", "a") as f:
+            f.write(f"\n{python_code}")

@@ -1,5 +1,6 @@
 from fastapi import APIRouter
 from llm.InteractiveChat.reshandler import response_handler
+from llm.InteractiveChat.queryhandler import query_handler
 from llm.InteractiveChat.query import GenerativeAIChat
 from llm.prompts import PromptLibrary
 import time
@@ -33,7 +34,9 @@ async def _chat(message: str):
     start_time = time.time()
     if not CHAT_INTERFACE.convo:
         _start_chat()
-    res = CHAT_INTERFACE.send_message(message)
+
+    query = query_handler(message)
+    res = CHAT_INTERFACE.send_message(query)
     print(res)
     modi_res = response_handler(CHAT_INTERFACE, res)
     end_time = time.time()
