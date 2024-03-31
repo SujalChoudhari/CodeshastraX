@@ -26,7 +26,7 @@ export default function Patientloginin() {
         const pass = passwordRef.current?.value;
 
         // Call your signup function with name, email, and pass
-        router.push("/home")
+        router.push("/assistant")
 
     }
 

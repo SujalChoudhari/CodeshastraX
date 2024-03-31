@@ -67,7 +67,7 @@ export default function Landing() {
               <TypewriterEffectSmooth words={words} />
 
             </div>
-            <p className='max-w-md text-sm md:text-base text-zinc-500'>Insightful is an AI-powered sales optimization tool that provides data-driven insights to boost sales performance.</p>
+            <p className='max-w-md text-sm md:text-base text-zinc-500'>WaveByte offers a comprehensive voice assistant solution that leverages advanced AI/ML technologies to provide users with personalized, efficient, and intuitive assistance</p>
             <div className='w-full flex items-center justify-center md:justify-start gap-4'>
             </div>
           </div>

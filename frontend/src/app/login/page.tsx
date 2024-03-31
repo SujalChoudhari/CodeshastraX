@@ -17,8 +17,8 @@ export default function Patientloginin() {
     const handleOnSubmit = async (e: FormEvent) => {
         e.preventDefault();
         //@ts-ignore
-        auth?.logInWithEmailPassword(emailRef.current.value, passwordRef.current.value);
-        router.push("/dashboard")
+        // auth?.logInWithEmailPassword(emailRef.current.value, passwordRef.current.value);
+        router.push("/assistant")
 
     }
 
