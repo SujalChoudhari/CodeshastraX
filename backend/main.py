@@ -31,5 +31,13 @@ def read_root():
     return {"Hello": "World"}
 
 
+@app.get("/userFile")
+def send_file():
+    with open("../sandbox/user.txt") as f:
+        data = f.read()
+
+    return {"content": data.split("--\n")[-1]}
+
+
 if __name__ == "__main__":
     os.system("uvicorn main:app --host 0.0.0.0 --port 80 --reload")
