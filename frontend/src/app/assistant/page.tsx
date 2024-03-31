@@ -18,12 +18,25 @@ import { AuroraBackground } from '@/components/aurora-background';
 import toast from 'react-hot-toast';
 import { FilesPanel } from '@/components/component/files-panel';
 
+import { driver } from "driver.js";
+import "driver.js/dist/driver.css";
 
 export default function Page() {
   const [chatMessages, setChatMessages] = useState<string[]>([]);
   const [animatePrompt, setAnimatePrompt] = useState(false);
   const [browserURL, setBrowserURL] = useState("");
   const [timeMs, setTimeMs] = useState(null);
+
+  const driverObj = driver({
+    showProgress: true,
+    steps: [
+      { element: '#files', popover: { title: 'Sandbox Simulation', description: 'Access everything inside Sandbox', side: "left", align: 'start' } },
+      { element: '#terminal', popover: { title: 'Access via Terminal', description: 'Access everything inside Sandbox manually using this Terminal' } },
+      { element: '#inputs', popover: { title: 'Communicate with WaveByte via these Inputs', description: 'Ask WaveByte to perform tasks in sandbox' } },
+      { element: '#voice_login', popover: { title: 'Switch users using voice', description: 'Say `Hello` and AI identifies you.' } },
+      { element: '#prompt', popover: { title: 'Transparancy', description: 'See the prompt that gets executed when you use the AI' } },
+    ]
+  });
 
   const speak = async (text: string, wordsToConvert: number = 50) => {
     // Split the text into words
@@ -84,6 +97,7 @@ export default function Page() {
       }
     };
     resetChat();
+    driverObj.drive();
   }, []);
   return (
     <>
@@ -93,7 +107,7 @@ export default function Page() {
           direction="horizontal"
           className="rounded-lg border "
         >
-          <ResizablePanel defaultSize={10} maxSize={15}>
+          <ResizablePanel defaultSize={15} maxSize={15}>
             <FilesPanel />
           </ResizablePanel>
           <ResizableHandle withHandle />

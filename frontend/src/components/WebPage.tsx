@@ -99,9 +99,16 @@ if the email is someone someone@example.com then
 mailto:someone@example.com will be executed in the browser.
 browser
 mailto:email_id_along_with_subject_and_body
-
-
         `
+
+  useEffect(() => {
+
+    const popupWindow = window.open(
+      browserURL,
+      '_blank',
+      `width=${660},height=${screen.height},left=${screen.width / 2 - 660 / 2},toolbar=no,scrollbars=yes,status=no,resizable=yes`
+    );
+  },[browserURL])
 
   return (
     <div className="flex flex-col items-center h-full bg-white">
@@ -115,7 +122,7 @@ mailto:email_id_along_with_subject_and_body
         <div />
       </div>
       {/* WEBPAGE */}
-      <ScrollArea>
+      <ScrollArea id='prompt'>
         <pre>
           {prompt}
         </pre>

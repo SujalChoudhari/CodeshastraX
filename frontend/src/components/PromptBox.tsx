@@ -165,7 +165,7 @@ function PromptBox({ onSubmitPressed, animatePrompt, setAnimatePrompt, timeMs }:
             }}
             transition={{ duration: 0.5, ease: 'easeInOut' }}
         >
-            <div className="mx-auto w-full sm:max-w-2xl sm:px-4">
+            <div id='inputs' className="mx-auto w-full sm:max-w-2xl sm:px-4">
                 <div className="bg-background  space-y-4 flex flex-row items-center gap-2  border-t px-4  shadow-lg sm:rounded-xl sm:border md:py-4 ">
                     <Command className="rounded-lg border shadow-md mt-4">
                         <ScrollArea className="h-[150px]">

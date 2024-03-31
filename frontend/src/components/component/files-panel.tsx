@@ -8,7 +8,7 @@ import { CogIcon, FileIcon, FolderIcon, Settings2 } from "lucide-react";
 
 export function FilesPanel() {
   return (
-    <div className="flex flex-col w-64 bg-white h-full w-full">
+    <div id="files" className="flex flex-col w-64 bg-white h-full w-full">
       <div className="flex items-center p-2 space-x-2 border-b">
         <Settings2 className="text-yellow-500" />
         <span className="text-sm font-semibold">Sandbox</span>
