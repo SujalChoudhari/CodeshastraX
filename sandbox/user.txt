@@ -3,3 +3,4 @@ Things about user: IGNORE UNTILL ASKED FOR
 15% of 2280: 342
 Hackathon meet reminder alert: 2024-04-01 08:00
 reminder: Your name is Sania : in 1 hour
+hackathon meet reminder alert : 2024-04-01 08:00 : 22:30
