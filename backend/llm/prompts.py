@@ -89,6 +89,7 @@ PixelFree Studio: Accelerating frontend development [https://pixelfreestudio.com
 PromptLibrary.add_tool(
     "CMD",
     """
+    COST: High, use sparingly
 You also have a tool to run cmd or powershell command on users device, the output will be sent directly to you.
 To execute a command in users device use the ```exec formatting.
 
@@ -131,6 +132,7 @@ key: some description about it : time (optional) AT LEAST 10 words about the sav
 PromptLibrary.add_tool(
     "MailTO",
     """
+    COST: High, use sparingly
 You have to open a browser with the email of the person given by the user. 
 Also, in response, you will explain the content and the response is sent but only no other thing including any symbols or email is tolerated. 
 Just a confirmation message. 

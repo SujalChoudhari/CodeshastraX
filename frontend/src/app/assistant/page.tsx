@@ -16,6 +16,7 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { AuroraBackground } from '@/components/aurora-background';
 import toast from 'react-hot-toast';
+import { FilesPanel } from '@/components/component/files-panel';
 
 
 export default function Page() {
@@ -92,6 +93,10 @@ export default function Page() {
           direction="horizontal"
           className="rounded-lg border "
         >
+          <ResizablePanel defaultSize={10} maxSize={15}>
+            <FilesPanel />
+          </ResizablePanel>
+          <ResizableHandle withHandle />
           <ResizablePanel defaultSize={100}>
             <div className="h-screen flex flex-col">
               <Popover>
@@ -110,18 +115,11 @@ export default function Page() {
                   <Link href='/landing'>
                     <div className='text-center text-gray-500 mt-2'>Home</div>
                   </Link>
-
-
-
-
-
                 </PopoverContent>
               </Popover>
-
-
-              <h1 className=" text-lg   md:text-7xl  bg-clip-text text-transparent bg-black  text-center font-sans font-bold">
-          WaveByte
-        </h1>
+              <h1 className=" text-lg  md:text-4xl  bg-clip-text text-transparent bg-black  text-center font-sans font-bold">
+                WaveByte
+              </h1>
               <Chat chatData={chatMessages.map((message, index) => ({ isUser: index % 2 === 0, message }))} />
               <PromptBox onSubmitPressed={onInputSent} animatePrompt={animatePrompt} setAnimatePrompt={setAnimatePrompt} timeMs={timeMs} />
               <Terminal animatePrompt={animatePrompt} setAnimatePrompt={setAnimatePrompt} />

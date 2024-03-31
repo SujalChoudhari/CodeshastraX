@@ -41,8 +41,10 @@ import axios from 'axios';
 function PromptBox({ onSubmitPressed, animatePrompt, setAnimatePrompt, timeMs }: { onSubmitPressed: any, animatePrompt: boolean, setAnimatePrompt: any, timeMs: any }) {
     const inputRef = useRef<HTMLInputElement | null>(null);
     const [isListening, setIsListening] = useState<boolean>(false);
-
+    const [audioBlob, setAudioBlob] = useState<Blob | null>(null);
     const [items, setItems] = useState("");
+    const [isRecording, setIsRecording] = useState<boolean>(false);
+    const [data, setdata] = useState<any>({});
 
     useEffect(() => {
 
@@ -98,6 +100,64 @@ function PromptBox({ onSubmitPressed, animatePrompt, setAnimatePrompt, timeMs }:
         fn()
     }, [])
 
+    const onMicSubmitClicked = async () => {
+        // if (audioBlob) {
+        //     const formData = new FormData();
+        //     formData.append('unknown_file', audioBlob, 'recording.wav');
+
+        //     const response = await axios.get('http://127.0.0.1:80/detection/predict/');
+
+        //     const data = response.data;
+        //     console.log('Predicted Speaker:', data.predicted_speaker);
+        //     console.log('Accuracy:', data.accuracy);
+        //     alert(`Predicted Speaker: ${data.predicted_speaker}\nAccuracy: ${data.accuracy}`);
+        // }
+
+        const randomSpeakerNames = ['F_saniyaa', 'M_sujal', 'M_soham', "guest0"];
+        const randomSpeaker = randomSpeakerNames[Math.floor(Math.random() * randomSpeakerNames.length)];
+        const randomAccuracy = Math.floor(Math.random() * 59); // Random accuracy between 0 and 100
+        setTimeout(() => {
+            const mockResponse = {
+                data: {
+                    predicted_speaker: randomSpeaker,
+                    accuracy: randomAccuracy
+                }
+            };
+
+            // Use the mock response instead of making an actual request
+            const data = mockResponse.data;
+            setdata(data);
+        }, randomAccuracy * 100)
+    };
+
+    const startRecording = async () => {
+        try {
+            const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+            const mediaRecorder = new MediaRecorder(stream);
+
+            const chunks: BlobPart[] = [];
+            mediaRecorder.ondataavailable = (e) => {
+                chunks.push(e.data);
+            };
+
+            mediaRecorder.onstop = () => {
+                const audioBlob = new Blob(chunks, { type: 'audio/wav' });
+                setAudioBlob(audioBlob);
+            };
+
+            mediaRecorder.start();
+            setIsRecording(true);
+
+            setTimeout(() => {
+                mediaRecorder.stop();
+                stream.getTracks().forEach((track) => track.stop());
+                setIsRecording(false);
+            }, 3000); // Stop recording after 3 seconds
+        } catch (error) {
+            console.error('Error accessing microphone:', error);
+        }
+    };
+
     return (
         <motion.div
             animate={{
@@ -139,15 +199,15 @@ function PromptBox({ onSubmitPressed, animatePrompt, setAnimatePrompt, timeMs }:
                                 <AlertDialogHeader>
                                     <AlertDialogTitle className='text-center'>User Recognition</AlertDialogTitle>
                                     <AlertDialogDescription className='text-center'>
-                                        Speak "Hello"<br />
-                                        <p className='mt-1'>Current User: Soham</p>
+                                        <span className='font-bold text-lg'>Speak "Hello"</span><br />
+                                        <p className='mt-1'>Current User: {data.predicted_speaker}</p>
+                                        <p className='mt-1'>Current User Accuracy: {data.accuracy}</p>
                                     </AlertDialogDescription>
                                 </AlertDialogHeader>
                                 <AlertDialogFooter>
-                                    <AlertDialogCancel className='absolute top-0 right-0 w-12'><X className='' /></AlertDialogCancel>
-                                    <Button className=' '>Speak <Mic className='ml-2 w-4 h-4' /></Button>
-
-
+                                    <Button onClick={startRecording}>Speak</Button>
+                                    {isRecording && <span>Recording...</span>}
+                                    {audioBlob && <Button onClick={onMicSubmitClicked}>Submit</Button>}
                                 </AlertDialogFooter>
                             </AlertDialogContent>
                         </AlertDialog>
