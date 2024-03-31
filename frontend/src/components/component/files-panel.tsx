@@ -9,34 +9,34 @@ import { CogIcon, FileIcon, FolderIcon, Settings2 } from "lucide-react";
 export function FilesPanel() {
   return (
     <div id="files" className="flex flex-col w-64 bg-white h-full w-full">
-      <div className="flex items-center p-2 space-x-2 border-b">
+      <div className="hover:cursor-pointer z-10 flex items-center p-2 space-x-2 border-b">
         <Settings2 className="text-yellow-500" />
-        <span className="text-sm font-semibold">Sandbox</span>
+        <span className=" text-sm font-semibold">Sandbox</span>
       </div>
       <div className="flex flex-col">
-        <div className="flex items-center p-2 space-x-2">
+        <div className="hover:cursor-pointer z-10 flex items-center p-2 space-x-2">
           <FolderIcon className="text-yellow-500" />
-          <span className="flex-1 text-sm">mnt</span>
+          <span className=" flex-1 text-sm">mnt</span>
         </div>
-        <div className="flex items-center p-2 pl-6 space-x-2">
+        <div className="hover:cursor-pointer z-10 flex items-center p-2 pl-6 space-x-2">
           <FolderIcon className="text-yellow-500" />
-          <span className="flex-1 text-sm">d</span>
+          <span className=" flex-1 text-sm">d</span>
         </div>
-        <div className="flex items-center p-2 pl-10 space-x-2">
+        <div className="hover:cursor-pointer z-10 flex items-center p-2 pl-10 space-x-2">
           <FolderIcon className="text-yellow-500" />
-          <span className="flex-1 text-sm">sandbox</span>
+          <span className=" flex-1 text-sm">sandbox</span>
         </div>
-        <div className="flex items-center p-2 pl-14 space-x-2">
+        <div className="hover:cursor-pointer z-10 flex items-center p-2 pl-14 space-x-2">
           <FileIcon className="text-blue-500" />
-          <span className="flex-1 text-sm">output.yaml</span>
+          <span className=" flex-1 text-sm">output.yaml</span>
         </div>
-        <div className="flex items-center p-2 pl-14 space-x-2">
+        <div className="hover:cursor-pointer z-10 flex items-center p-2 pl-14 space-x-2">
           <FileIcon className="text-blue-500" />
-          <span className="flex-1 text-sm">README.md</span>
+          <span className=" flex-1 text-sm">README.md</span>
         </div>
-        <div className="flex items-center p-2 pl-14 space-x-2">
+        <div className="hover:cursor-pointer z-10 flex items-center p-2 pl-14 space-x-2">
           <FileIcon className="text-blue-500" />
-          <span className="flex-1 text-sm">user.txt</span>
+          <span className=" flex-1 text-sm">user.txt</span>
         </div>
       </div>
     </div>

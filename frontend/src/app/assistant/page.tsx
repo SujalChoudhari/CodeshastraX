@@ -131,7 +131,7 @@ export default function Page() {
                   </Link>
                 </PopoverContent>
               </Popover>
-              <h1 className=" text-lg  md:text-4xl  bg-clip-text text-transparent bg-black  text-center font-sans font-bold">
+              <h1 className=" text-lg md:text-4xl  bg-clip-text text-transparent bg-black  text-center font-sans font-bold">
                 WaveByte
               </h1>
               <Chat chatData={chatMessages.map((message, index) => ({ isUser: index % 2 === 0, message }))} />
