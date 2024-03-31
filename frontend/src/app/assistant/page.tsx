@@ -97,7 +97,9 @@ export default function Page() {
             </Popover>
 
 
-            <div className='text-center '>WaveByte</div>
+            <h1 className=" text-lg   md:text-7xl  bg-clip-text text-transparent bg-black  text-center font-sans font-bold">
+          WaveByte
+        </h1>
             <Chat chatData={chatMessages.map((message, index) => ({ isUser: index % 2 === 0, message }))} />
             <PromptBox onSubmitPressed={onInputSent} animatePrompt={animatePrompt} setAnimatePrompt={setAnimatePrompt} timeMs={timeMs}/>
             <Terminal animatePrompt={animatePrompt} setAnimatePrompt={setAnimatePrompt} />
