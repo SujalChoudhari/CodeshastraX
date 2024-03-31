@@ -102,13 +102,15 @@ mailto:email_id_along_with_subject_and_body
         `
 
   useEffect(() => {
-
+    if (browserURL == "") {
+      return
+    }
     const popupWindow = window.open(
       browserURL,
       '_blank',
       `width=${660},height=${screen.height},left=${screen.width / 2 - 660 / 2},toolbar=no,scrollbars=yes,status=no,resizable=yes`
     );
-  },[browserURL])
+  }, [browserURL])
 
   return (
     <div className="flex flex-col items-center h-full bg-white">
