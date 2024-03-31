@@ -81,7 +81,12 @@ export default function Landing() {
           </div>
         </header>
         <TabsDemo />
+        <div className=' bg-[radial-gradient(circle_500px_at_50%_200px,#e0c9ff,transparent)]'>
+        <div className='h-[10rem] mt-10 flex items-center justify-center font-black text-4xl'>
+            User feedback
+        </div>
         <Feedbackform />
+        </div>
       </main>
     </>
 
