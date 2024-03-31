@@ -72,7 +72,7 @@ export default function Landing() {
             </div>
           </div>
 
-          <div className='w-full h-2/4 md:h-full md:w-3/5 flex items-center justify-center relative z-10 ml-30'>
+          <div className='w-full h-2/4 md:h-full md:w-3/5 flex items-center justify-center relative z-10 ml-60'>
             <Spline
               scene="https://prod.spline.design/JmMVfZmoR9EHQCGY/scene.splinecode"
 
