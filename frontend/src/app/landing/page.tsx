@@ -72,7 +72,7 @@ export default function Landing() {
             </div>
           </div>
 
-          <div className='w-full h-2/4 md:h-full md:w-3/5 flex items-center justify-center relative z-10 ml-30'>
+          <div className='w-full h-2/4 md:h-full md:w-3/5 flex items-center justify-center relative z-10 ml-60'>
             <Spline
               scene="https://prod.spline.design/JmMVfZmoR9EHQCGY/scene.splinecode"
 
@@ -81,7 +81,7 @@ export default function Landing() {
           </div>
         </header>
         <TabsDemo />
-        <div className=' bg-[radial-gradient(circle_500px_at_50%_200px,#e0c9ff,transparent)]'>
+        <div className=' bg-[radial-gradient(circle_300px_at_50%_200px,#e0c9ff,transparent)]'>
         <div className='h-[10rem] mt-10 flex items-center justify-center font-black text-4xl'>
             User feedback
         </div>
