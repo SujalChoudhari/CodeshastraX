@@ -4,6 +4,7 @@ import { SquareTerminal } from 'lucide-react';
 import { Input } from './ui/input';
 import { Button } from './ui/button';
 import { ScrollArea } from './ui/scroll-area';
+import toast from 'react-hot-toast';
 
 function Terminal({ animatePrompt, setAnimatePrompt }: { animatePrompt: boolean, setAnimatePrompt: any }) {
     const [commandInput, setCommandInput] = useState('');
@@ -27,7 +28,9 @@ function Terminal({ animatePrompt, setAnimatePrompt }: { animatePrompt: boolean,
             .catch(error => {
                 console.error('Error executing command:', error);
                 // Handle error (if required)
+                toast.error("Failed to run command")
             });
+            toast.success("Ran command successfully")
         setCommandInput('');
     };
 

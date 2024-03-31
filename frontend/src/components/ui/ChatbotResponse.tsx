@@ -26,7 +26,6 @@ function ChatbotResponse({ message }: { message: string }) {
                 <div className="bg-background flex size-[25px] shrink-0 select-none items-center justify-center rounded-md border shadow-sm"> {/* Seperator */}
                     <GitGraph size={18} />
                 </div>
-
                 <div id="mkd" className="ml-4 flex-1 space-y-2 overflow-hidden pl-2 ">
 
                     {chatbotResponse ? (
@@ -45,7 +44,7 @@ function ChatbotResponse({ message }: { message: string }) {
                             <Skeleton className="w-full h-[20px] rounded-full" />
                             <Skeleton className="w-full h-[20px] rounded-full" />
                         </>
-                    )} 
+                    )}
                 </div>
             </div>
             <div data-orientation="horizontal" role="none" className="shrink-0 bg-border h-[1px] w-full my-4">

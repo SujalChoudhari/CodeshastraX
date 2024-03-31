@@ -35,11 +35,14 @@ import {
     AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
 import { Button } from './ui/button';
+import toast from 'react-hot-toast';
+import axios from 'axios';
 
 function PromptBox({ onSubmitPressed, animatePrompt, setAnimatePrompt, timeMs }: { onSubmitPressed: any, animatePrompt: boolean, setAnimatePrompt: any, timeMs: any }) {
     const inputRef = useRef<HTMLInputElement | null>(null);
     const [isListening, setIsListening] = useState<boolean>(false);
-    
+
+    const [items, setItems] = useState("");
 
     useEffect(() => {
 
@@ -55,11 +58,13 @@ function PromptBox({ onSubmitPressed, animatePrompt, setAnimatePrompt, timeMs }:
                     inputRef.current.value = transcript;
                     onSubmitClicked();
                 }
+                toast.success("Voice Recognized")
             };
 
             recognition.onerror = (event: any) => {
                 console.error('Speech recognition error:', event.error);
                 setIsListening(false);
+                toast.error(`Error: ${event.error}. Try moving to a quite place.`)
             };
 
             recognition.onend = () => {
@@ -78,9 +83,20 @@ function PromptBox({ onSubmitPressed, animatePrompt, setAnimatePrompt, timeMs }:
         const curr = inputRef.current;
         if (curr && curr.value) {
             onSubmitPressed(curr.value ?? '');
+            toast.success("Quering API")
             curr.value = '';
         }
     };
+
+    useEffect(() => {
+        const fn = async () => {
+            const res = await axios.get("http://127.0.0.1:80/userFile");
+            const file: string = res.data.content;
+            setItems(file);
+            console.log(file)
+        }
+        fn()
+    }, [])
 
     return (
         <motion.div
@@ -96,18 +112,13 @@ function PromptBox({ onSubmitPressed, animatePrompt, setAnimatePrompt, timeMs }:
                             <CommandList>
                                 <CommandEmpty>No results found.</CommandEmpty>
                                 <CommandGroup heading="Suggestions">
-                                    <CommandItem>
-                                        <Calendar className="mr-2 h-4 w-4" />
-                                        <span>Schedule an email reminder for the project deadline on Friday at 10 AM</span>
-                                    </CommandItem>
-                                    <CommandItem>
-                                        <Target className="mr-2 h-4 w-4" />
-                                        <span>Remind me to submit the project at 5 PM tomorrow.</span>
-                                    </CommandItem>
-                                    <CommandItem>
-                                        <Calculator className="mr-2 h-4 w-4" />
-                                        <span>What is 15% of 280?</span>
-                                    </CommandItem>
+
+                                    {items && items.split("\n").map(item => {
+                                        return <CommandItem>
+                                            <Calendar className="mr-2 h-4 w-4" />
+                                            <span>{item}</span>
+                                        </CommandItem>
+                                    })}
                                 </CommandGroup>
                                 <CommandSeparator />
                             </CommandList>
@@ -128,15 +139,15 @@ function PromptBox({ onSubmitPressed, animatePrompt, setAnimatePrompt, timeMs }:
                                 <AlertDialogHeader>
                                     <AlertDialogTitle className='text-center'>User Recognition</AlertDialogTitle>
                                     <AlertDialogDescription className='text-center'>
-                                        Speak "Hello"<br/>
+                                        Speak "Hello"<br />
                                         <p className='mt-1'>Current User: Soham</p>
                                     </AlertDialogDescription>
                                 </AlertDialogHeader>
                                 <AlertDialogFooter>
-                                    <AlertDialogCancel className='absolute top-0 right-0 w-12'><X className=''/></AlertDialogCancel>
-                                    <Button className=' '>Speak <Mic className='ml-2 w-4 h-4'/></Button>
-                                    
-                                    
+                                    <AlertDialogCancel className='absolute top-0 right-0 w-12'><X className='' /></AlertDialogCancel>
+                                    <Button className=' '>Speak <Mic className='ml-2 w-4 h-4' /></Button>
+
+
                                 </AlertDialogFooter>
                             </AlertDialogContent>
                         </AlertDialog>
@@ -149,15 +160,15 @@ function PromptBox({ onSubmitPressed, animatePrompt, setAnimatePrompt, timeMs }:
                                     </svg>
                                 </span>
                             </button>
-                            <button onClick={() => setIsListening(!isListening)} className="group h-8 select-none rounded-lg bg-gradient-to-b from-zinc-800 via-zinc-700 to-zinc-600 px-3 text-sm leading-8 text-zinc-50 shadow-[0_-1px_0_1px_rgba(0,0,0,0.8)_inset,0_0_0_1px_rgb(9_9_11)_inset,0_0.5px_0_1.5px_#71717a_inset] hover:bg-gradient-to-b hover:from-zinc-900 hover:via-zinc-900 hover:to-zinc-700 active:shadow-[0_3px_0_0_rgba(0,0,0)_inset]">
+                            <button onClick={() => { setIsListening(!isListening); toast.success("Start Speaking") }} className="group h-8 select-none rounded-lg bg-gradient-to-b from-zinc-800 via-zinc-700 to-zinc-600 px-3 text-sm leading-8 text-zinc-50 shadow-[0_-1px_0_1px_rgba(0,0,0,0.8)_inset,0_0_0_1px_rgb(9_9_11)_inset,0_0.5px_0_1.5px_#71717a_inset] hover:bg-gradient-to-b hover:from-zinc-900 hover:via-zinc-900 hover:to-zinc-700 active:shadow-[0_3px_0_0_rgba(0,0,0)_inset]">
                                 <span className="block group-active:[transform:translate3d(0,1px,0)]">
 
                                     <Mic size={15} />
                                 </span>
                             </button>
                         </div>
-                       
-                                <button className="group block h-12 select-none rounded-lg bg-white px-3 text-sm  text-zinc-950 shadow-[0_-1px_0_0px_#d4d4d8_inset,0_0_0_1px_#f4f4f5_inset,0_0.5px_0_1.5px_#fff_inset] hover:bg-zinc-50 hover:via-zinc-900 hover:to-zinc-800 active:shadow-[-1px_0px_1px_0px_#e4e4e7_inset,1px_0px_1px_0px_#e4e4e7_inset,0px_0.125rem_1px_0px_#d4d4d8_inset]"><span className="group-active:[transform:translate3d(0,1px,0)] text-sm flex flex-row items-center"> <Timer />Response Time: {timeMs ? `${(timeMs / 1000).toFixed(2)} sec` : 'N/A'}</span></button>
+
+                        <button className="group block h-12 select-none rounded-lg bg-white px-3 text-sm  text-zinc-950 shadow-[0_-1px_0_0px_#d4d4d8_inset,0_0_0_1px_#f4f4f5_inset,0_0.5px_0_1.5px_#fff_inset] hover:bg-zinc-50 hover:via-zinc-900 hover:to-zinc-800 active:shadow-[-1px_0px_1px_0px_#e4e4e7_inset,1px_0px_1px_0px_#e4e4e7_inset,0px_0.125rem_1px_0px_#d4d4d8_inset]"><span className="group-active:[transform:translate3d(0,1px,0)] text-sm flex flex-row items-center"> <Timer />Response Time: {timeMs ? `${(timeMs / 1000).toFixed(2)} sec` : 'N/A'}</span></button>
                     </div>
 
 
