@@ -1,12 +1,12 @@
 "use client"
 import React from 'react'
-import TabsDemo from '@/components/component/exampletab'
 import Spline from '@splinetool/react-spline'
 import Feedbackform from '@/components/feedbackform'
 import { IconHome, IconUser } from "@tabler/icons-react";
 import { FaFlag, FaLock } from "react-icons/fa6";
 import { FloatingNav } from '@/components/ui/floating-navbar'
 import { TypewriterEffectSmooth } from '@/components/typewriter-effect'
+import { TabsDemo } from '@/components/component/exampletab';
 
 export default function Landing() {
   const navItems = [
@@ -80,7 +80,7 @@ export default function Landing() {
 
           </div>
         </header>
-        <TabsDemo />
+        <TabsDemo/>
         <div className=' bg-[radial-gradient(circle_500px_at_50%_200px,#e0c9ff,transparent)]'>
         <div className='h-[10rem] mt-10 flex items-center justify-center font-black text-4xl'>
             User feedback
