@@ -33,7 +33,7 @@ export default function Page() {
       { element: '#files', popover: { title: 'Sandbox Simulation', description: 'Access everything inside Sandbox', side: "left", align: 'start' } },
       { element: '#terminal', popover: { title: 'Access via Terminal', description: 'Access everything inside Sandbox manually using this Terminal' } },
       { element: '#inputs', popover: { title: 'Communicate with WaveByte via these Inputs', description: 'Ask WaveByte to perform tasks in sandbox' } },
-      { element: '#voice_login', popover: { title: 'Switch users using voice', description: 'Say `Hello` and AI identifies you.' } },
+      { element: '#voice_login', popover: { title: 'Voice based controls', description: 'Say `Hello` and AI identifies you.' } },
       { element: '#prompt', popover: { title: 'Transparancy', description: 'See the prompt that gets executed when you use the AI' } },
     ]
   });
@@ -140,7 +140,7 @@ export default function Page() {
             </div>
           </ResizablePanel>
           <ResizableHandle withHandle />
-          <ResizablePanel defaultSize={0}>
+          <ResizablePanel defaultSize={40} maxSize={60}>
             <WebPage browserURL={browserURL} />
           </ResizablePanel>
         </ResizablePanelGroup>
